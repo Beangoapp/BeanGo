@@ -16,6 +16,7 @@ void main() {
         ),
       ),
     );
+    await tester.pumpAndSettle();
 
     await tester.tap(find.text('Send code'));
     await tester.pump();
