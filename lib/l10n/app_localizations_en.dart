@@ -18,6 +18,124 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getStarted => 'Get started';
 
   @override
+  String get welcomeHeadline => 'Your coffee knows you.';
+
+  @override
+  String get welcomeSupportingCopy =>
+      'Discover, order, and enjoy coffee tailored to your taste.';
+
+  @override
+  String get changeLanguage => 'Language';
+
+  @override
+  String get coffeeVisualLabel => 'A premium cup of coffee';
+
+  @override
+  String get chooseLanguage => 'Choose your language';
+
+  @override
+  String get chooseLanguageBody =>
+      'Select the language you want to use across BeanGo.';
+
+  @override
+  String get englishLanguage => 'English';
+
+  @override
+  String get arabicLanguage => 'Arabic';
+
+  @override
+  String get welcomeBack => 'Welcome back';
+
+  @override
+  String get loginBody =>
+      'Sign in to continue to your coffee, rewards, and favorite cafés.';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get emailRequired => 'Enter your email address.';
+
+  @override
+  String get emailInvalid => 'Enter a valid email address.';
+
+  @override
+  String get passwordRequired => 'Enter your password.';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 8 characters.';
+
+  @override
+  String get showPassword => 'Show password';
+
+  @override
+  String get hidePassword => 'Hide password';
+
+  @override
+  String get forgotPassword => 'Forgot password?';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get noAccount => 'New to BeanGo?';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get invalidCredentials => 'The email or password is incorrect.';
+
+  @override
+  String get loginUnavailable => 'We couldn\'t sign you in. Please try again.';
+
+  @override
+  String get enterPhoneTitle => 'Enter your phone number';
+
+  @override
+  String get enterPhoneBody =>
+      'We\'ll send a one-time code to verify your number.';
+
+  @override
+  String get countryCode => 'Code';
+
+  @override
+  String get phoneNumber => 'Phone number';
+
+  @override
+  String get phoneRequired => 'Enter your phone number.';
+
+  @override
+  String get phoneInvalid => 'Enter a valid phone number.';
+
+  @override
+  String get sendCode => 'Send code';
+
+  @override
+  String get phonePrivacy =>
+      'We\'ll only use your number to secure your BeanGo account.';
+
+  @override
+  String get verifyPhoneTitle => 'Verify your number';
+
+  @override
+  String verifyPhoneBody(String phone) {
+    return 'Enter the 6-digit code sent to $phone.';
+  }
+
+  @override
+  String get verificationCode => 'Verification code';
+
+  @override
+  String get codeInvalid => 'Enter the valid 6-digit code.';
+
+  @override
+  String get verifyCode => 'Verify code';
+
+  @override
   String get onboardingTitleOne => 'Coffee that knows you';
 
   @override
