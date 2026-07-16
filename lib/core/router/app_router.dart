@@ -2,13 +2,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/home/presentation/home_placeholder_screen.dart';
-import '../../features/onboarding/presentation/onboarding_screen.dart';
+import '../../features/auth/presentation/login_screen.dart';
+import '../../features/auth/presentation/verification_screen.dart';
+import '../../features/language/presentation/language_selection_screen.dart';
 import '../../features/splash/presentation/splash_screen.dart';
+import '../../features/welcome/presentation/welcome_screen.dart';
 
 abstract final class AppRoutes {
   static const splash = '/';
   static const home = '/home';
-  static const onboarding = '/onboarding';
+  static const welcome = '/welcome';
+  static const language = '/language';
+  static const login = '/login';
+  static const verification = '/verification';
 }
 
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -16,8 +22,24 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     initialLocation: AppRoutes.splash,
     routes: [
       GoRoute(
-        path: AppRoutes.onboarding,
-        builder: (context, state) => const OnboardingScreen(),
+        path: AppRoutes.login,
+        builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.verification,
+        builder: (context, state) {
+          final phone = state.extra;
+          if (phone is! String || phone.isEmpty) return const LoginScreen();
+          return VerificationScreen(phone: phone);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.language,
+        builder: (context, state) => const LanguageSelectionScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.welcome,
+        builder: (context, state) => const WelcomeScreen(),
       ),
       GoRoute(
         path: AppRoutes.splash,

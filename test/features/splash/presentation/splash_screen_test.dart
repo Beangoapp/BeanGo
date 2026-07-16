@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('shows BeanGo branding then navigates to onboarding', (
+  testWidgets('shows BeanGo branding then navigates to welcome', (
     tester,
   ) async {
     await tester.pumpWidget(const ProviderScope(child: BeanGoApp()));
@@ -14,6 +14,6 @@ void main() {
     await tester.pump(const Duration(seconds: 2));
     await tester.pumpAndSettle();
 
-    expect(find.text('Coffee that knows you'), findsOneWidget);
+    expect(find.text('Your coffee knows you.'), findsOneWidget);
   });
 }

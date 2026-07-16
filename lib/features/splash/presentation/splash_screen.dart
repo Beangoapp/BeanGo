@@ -39,7 +39,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   Future<void> _continueToApp() async {
     await ref.read(splashControllerProvider).waitUntilReady();
-    if (mounted) context.go(AppRoutes.onboarding);
+    if (mounted) context.go(AppRoutes.welcome);
   }
 
   @override
