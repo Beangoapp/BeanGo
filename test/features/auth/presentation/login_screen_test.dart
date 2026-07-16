@@ -16,7 +16,7 @@ void main() {
       ),
     );
 
-    await tester.tap(find.text('Sign in'));
+    await tester.tap(find.text('Send code'));
     await tester.pump();
 
     expect(find.text('Enter your phone number.'), findsOneWidget);
