@@ -14,8 +14,12 @@ class AppTextField extends StatelessWidget {
     this.autofillHints,
     this.validator,
     this.obscureText = false,
+    this.prefixIcon,
     this.suffixIcon,
     this.onFieldSubmitted,
+    this.onChanged,
+    this.enabled = true,
+    this.maxLines = 1,
   });
 
   final TextEditingController controller;
@@ -26,8 +30,12 @@ class AppTextField extends StatelessWidget {
   final Iterable<String>? autofillHints;
   final FormFieldValidator<String>? validator;
   final bool obscureText;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final ValueChanged<String>? onFieldSubmitted;
+  final ValueChanged<String>? onChanged;
+  final bool enabled;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +46,9 @@ class AppTextField extends StatelessWidget {
       autofillHints: autofillHints,
       validator: validator,
       obscureText: obscureText,
+      enabled: enabled,
+      maxLines: obscureText ? 1 : maxLines,
+      onChanged: onChanged,
       onFieldSubmitted: onFieldSubmitted,
       autocorrect: !obscureText,
       enableSuggestions: !obscureText,
@@ -49,6 +60,7 @@ class AppTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
+        prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         filled: true,
         fillColor: AppColors.milk,
