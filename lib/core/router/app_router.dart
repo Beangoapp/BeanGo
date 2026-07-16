@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/home/presentation/home_placeholder_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
+import '../../features/auth/presentation/auth_success_screen.dart';
 import '../../features/auth/presentation/verification_screen.dart';
 import '../../features/language/presentation/language_selection_screen.dart';
 import '../../features/splash/presentation/splash_screen.dart';
@@ -15,6 +16,7 @@ abstract final class AppRoutes {
   static const language = '/language';
   static const login = '/login';
   static const verification = '/verification';
+  static const authSuccess = '/auth-success';
 }
 
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -32,6 +34,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           if (phone is! String || phone.isEmpty) return const LoginScreen();
           return VerificationScreen(phone: phone);
         },
+      ),
+      GoRoute(
+        path: AppRoutes.authSuccess,
+        builder: (context, state) => const AuthSuccessScreen(),
       ),
       GoRoute(
         path: AppRoutes.language,

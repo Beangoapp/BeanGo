@@ -33,10 +33,11 @@ class _LanguageSelectionScreenState
         : 'en';
   }
 
-  void _continue() {
-    ref
+  Future<void> _continue() async {
+    await ref
         .read(localeControllerProvider.notifier)
         .select(Locale(_selectedLanguage));
+    if (!mounted) return;
     context.go(AppRoutes.login);
   }
 

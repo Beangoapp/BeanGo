@@ -13,9 +13,9 @@ void main() {
       ),
     );
 
-    expect(find.text('Your coffee knows you.'), findsOneWidget);
+    expect(find.text('Your Coffee Knows You'), findsOneWidget);
     expect(find.text('Get started'), findsOneWidget);
-    expect(find.text('Language'), findsOneWidget);
+    expect(find.text('Language'), findsNothing);
     expect(find.byType(PageView), findsNothing);
   });
 }

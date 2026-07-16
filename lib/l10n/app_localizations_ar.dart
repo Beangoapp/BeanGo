@@ -18,7 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get getStarted => 'ابدأ الآن';
 
   @override
-  String get welcomeHeadline => 'قهوتك تعرفك.';
+  String get welcomeHeadline => 'قهوتك تعرفك';
 
   @override
   String get welcomeSupportingCopy => 'اكتشف واطلب واستمتع بقهوة تناسب ذوقك.';
@@ -131,6 +131,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get verifyCode => 'تحقق من الرمز';
+
+  @override
+  String get resendCode => 'إعادة إرسال الرمز';
+
+  @override
+  String resendCodeIn(int seconds) {
+    return 'إعادة الإرسال خلال $secondsث';
+  }
+
+  @override
+  String get verificationSuccessTitle => 'تم بنجاح';
+
+  @override
+  String get verificationSuccessBody =>
+      'تم التحقق من رقمك. رحلتك مع القهوة تبدأ الآن.';
 
   @override
   String get onboardingTitleOne => 'قهوة تعرف ذوقك';

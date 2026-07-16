@@ -3,7 +3,7 @@
   "skip": "Skip",
   "continueLabel": "Continue",
   "getStarted": "Get started",
-  "welcomeHeadline": "Your coffee knows you.",
+  "welcomeHeadline": "Your Coffee Knows You",
   "welcomeSupportingCopy": "Discover, order, and enjoy coffee tailored to your taste.",
   "changeLanguage": "Language",
   "coffeeVisualLabel": "A premium cup of coffee",
@@ -43,6 +43,13 @@
   "verificationCode": "Verification code",
   "codeInvalid": "Enter the valid 6-digit code.",
   "verifyCode": "Verify code",
+  "resendCode": "Resend code",
+  "resendCodeIn": "Resend code in {seconds}s",
+  "@resendCodeIn": {
+    "placeholders": {"seconds": {"type": "int"}}
+  },
+  "verificationSuccessTitle": "You're all set",
+  "verificationSuccessBody": "Your number is verified. Your coffee journey starts now.",
   "onboardingTitleOne": "Coffee that knows you",
   "onboardingBodyOne": "BeanGo learns your taste and brings the right cup closer, wherever you are.",
   "onboardingTitleTwo": "Every café. One elegant experience.",

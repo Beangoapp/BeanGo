@@ -66,8 +66,8 @@ class AppButton extends StatelessWidget {
       AppButtonVariant.secondary => OutlinedButton(
         onPressed: isLoading ? null : onPressed,
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.espresso,
-          side: const BorderSide(color: AppColors.latte),
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
+          side: BorderSide(color: Theme.of(context).colorScheme.outline),
           textStyle: AppTypography.button,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.control),
@@ -78,7 +78,7 @@ class AppButton extends StatelessWidget {
       AppButtonVariant.text => TextButton(
         onPressed: isLoading ? null : onPressed,
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.espresso,
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
           textStyle: AppTypography.button,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.control),

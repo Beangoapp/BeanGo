@@ -3,7 +3,7 @@
   "skip": "تخطي",
   "continueLabel": "متابعة",
   "getStarted": "ابدأ الآن",
-  "welcomeHeadline": "قهوتك تعرفك.",
+  "welcomeHeadline": "قهوتك تعرفك",
   "welcomeSupportingCopy": "اكتشف واطلب واستمتع بقهوة تناسب ذوقك.",
   "changeLanguage": "اللغة",
   "coffeeVisualLabel": "كوب قهوة فاخر",
@@ -43,6 +43,13 @@
   "verificationCode": "رمز التحقق",
   "codeInvalid": "أدخل رمز التحقق الصحيح المكوّن من 6 أرقام.",
   "verifyCode": "تحقق من الرمز",
+  "resendCode": "إعادة إرسال الرمز",
+  "resendCodeIn": "إعادة الإرسال خلال {seconds}ث",
+  "@resendCodeIn": {
+    "placeholders": {"seconds": {"type": "int"}}
+  },
+  "verificationSuccessTitle": "تم بنجاح",
+  "verificationSuccessBody": "تم التحقق من رقمك. رحلتك مع القهوة تبدأ الآن.",
   "onboardingTitleOne": "قهوة تعرف ذوقك",
   "onboardingBodyOne": "يتعلم BeanGo ذوقك ويقرّب لك الكوب المناسب أينما كنت.",
   "onboardingTitleTwo": "كل المقاهي، بتجربة واحدة راقية",

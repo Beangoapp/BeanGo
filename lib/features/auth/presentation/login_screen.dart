@@ -12,7 +12,9 @@ import '../../../shared/widgets/app_brand.dart';
 import '../../../shared/widgets/app_primary_button.dart';
 import '../../../shared/widgets/app_text_field.dart';
 import '../application/login_controller.dart';
+import '../domain/country.dart';
 import '../domain/auth_failure.dart';
+import 'widgets/country_picker_field.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -24,16 +26,14 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _phoneController = TextEditingController();
-  late String _dialCode;
-
-  static const _dialCodes = ['+1', '+44', '+966', '+971', '+974'];
+  late Country _country;
 
   @override
   void initState() {
     super.initState();
-    _dialCode = PlatformDispatcher.instance.locale.countryCode == 'QA'
-        ? '+974'
-        : '+1';
+    _country = SupportedCountries.forLocale(
+      PlatformDispatcher.instance.locale.countryCode,
+    );
   }
 
   @override
@@ -46,7 +46,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     FocusScope.of(context).unfocus();
     if (!(_formKey.currentState?.validate() ?? false)) return;
     final localNumber = _phoneController.text.replaceAll(RegExp(r'\D'), '');
-    final phone = '$_dialCode$localNumber';
+    final phone = '${_country.dialCode}$localNumber';
     final success = await ref
         .read(loginControllerProvider.notifier)
         .requestOtp(phone: phone);
@@ -119,23 +119,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 112,
-                      child: DropdownButtonFormField<String>(
-                        initialValue: _dialCode,
-                        decoration: InputDecoration(
-                          labelText: l10n.countryCode,
-                        ),
-                        items: _dialCodes
-                            .map(
-                              (code) => DropdownMenuItem(
-                                value: code,
-                                child: Text(code),
-                              ),
-                            )
-                            .toList(growable: false),
-                        onChanged: (value) {
-                          if (value != null) setState(() => _dialCode = value);
-                        },
+                      width: 128,
+                      child: CountryPickerField(
+                        country: _country,
+                        label: l10n.countryCode,
+                        onChanged: (country) =>
+                            setState(() => _country = country),
                       ),
                     ),
                     const SizedBox(width: AppSpacing.sm),

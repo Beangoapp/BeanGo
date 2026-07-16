@@ -104,12 +104,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               ),
               AppPrimaryButton(
                 label: l10n.getStarted,
-                onPressed: () => context.go(AppRoutes.login),
-              ),
-              const SizedBox(height: AppSpacing.xs),
-              TextButton(
                 onPressed: () => context.go(AppRoutes.language),
-                child: Text(l10n.changeLanguage),
               ),
             ],
           ),

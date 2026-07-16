@@ -119,7 +119,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeHeadline.
   ///
   /// In en, this message translates to:
-  /// **'Your coffee knows you.'**
+  /// **'Your Coffee Knows You'**
   String get welcomeHeadline;
 
   /// No description provided for @welcomeSupportingCopy.
@@ -337,6 +337,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Verify code'**
   String get verifyCode;
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get resendCode;
+
+  /// No description provided for @resendCodeIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code in {seconds}s'**
+  String resendCodeIn(int seconds);
+
+  /// No description provided for @verificationSuccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all set'**
+  String get verificationSuccessTitle;
+
+  /// No description provided for @verificationSuccessBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your number is verified. Your coffee journey starts now.'**
+  String get verificationSuccessBody;
 
   /// No description provided for @onboardingTitleOne.
   ///

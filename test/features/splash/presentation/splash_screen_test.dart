@@ -14,6 +14,6 @@ void main() {
     await tester.pump(const Duration(seconds: 2));
     await tester.pumpAndSettle();
 
-    expect(find.text('Your coffee knows you.'), findsOneWidget);
+    expect(find.text('Your Coffee Knows You'), findsOneWidget);
   });
 }

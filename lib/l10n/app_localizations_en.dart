@@ -18,7 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getStarted => 'Get started';
 
   @override
-  String get welcomeHeadline => 'Your coffee knows you.';
+  String get welcomeHeadline => 'Your Coffee Knows You';
 
   @override
   String get welcomeSupportingCopy =>
@@ -134,6 +134,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get verifyCode => 'Verify code';
+
+  @override
+  String get resendCode => 'Resend code';
+
+  @override
+  String resendCodeIn(int seconds) {
+    return 'Resend code in ${seconds}s';
+  }
+
+  @override
+  String get verificationSuccessTitle => 'You\'re all set';
+
+  @override
+  String get verificationSuccessBody =>
+      'Your number is verified. Your coffee journey starts now.';
 
   @override
   String get onboardingTitleOne => 'Coffee that knows you';

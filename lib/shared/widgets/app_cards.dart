@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_tokens.dart';
 
 class AppCard extends StatelessWidget {
@@ -30,10 +29,10 @@ class AppCard extends StatelessWidget {
       button: onTap != null,
       label: semanticLabel,
       child: Material(
-        color: AppColors.milk,
+        color: Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(
           borderRadius: radius,
-          side: const BorderSide(color: AppColors.latte),
+          side: BorderSide(color: Theme.of(context).colorScheme.outlineVariant),
         ),
         clipBehavior: Clip.antiAlias,
         child: onTap == null
