@@ -1,0 +1,12 @@
+{
+  "@@locale": "ar",
+  "skip": "تخطي",
+  "continueLabel": "متابعة",
+  "getStarted": "ابدأ الآن",
+  "onboardingTitleOne": "قهوة تعرف ذوقك",
+  "onboardingBodyOne": "يتعلم BeanGo ذوقك ويقرّب لك الكوب المناسب أينما كنت.",
+  "onboardingTitleTwo": "كل المقاهي، بتجربة واحدة راقية",
+  "onboardingBodyTwo": "اكتشف المقاهي المميزة، اطلب مسبقًا، واجمع مكافآتك بلا انتظار.",
+  "onboardingTitleThree": "قهوتك المثالية بلمسة واحدة",
+  "onboardingBodyThree": "اقتراحات ذكية تناسب روتينك ومزاجك ولحظتك."
+}

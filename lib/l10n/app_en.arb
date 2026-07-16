@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "skip": "Skip",
+  "continueLabel": "Continue",
+  "getStarted": "Get started",
+  "onboardingTitleOne": "Coffee that knows you",
+  "onboardingBodyOne": "BeanGo learns your taste and brings the right cup closer, wherever you are.",
+  "onboardingTitleTwo": "Every café. One elegant experience.",
+  "onboardingBodyTwo": "Discover standout cafés, order ahead, and collect rewards without the wait.",
+  "onboardingTitleThree": "Your perfect cup, one tap away",
+  "onboardingBodyThree": "Smart recommendations shaped by your routine, mood, and moment."
+}

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/router/app_router.dart';
 import '../core/theme/app_theme.dart';
+import '../l10n/app_localizations.dart';
 
 class BeanGoApp extends ConsumerWidget {
   const BeanGoApp({super.key});
@@ -14,6 +15,8 @@ class BeanGoApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: ref.watch(appRouterProvider),
     );
   }
