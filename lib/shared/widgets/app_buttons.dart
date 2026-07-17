@@ -16,6 +16,7 @@ class AppButton extends StatelessWidget {
     this.isLoading = false,
     this.expand = true,
     this.semanticLabel,
+    this.height = 56,
   });
 
   final String label;
@@ -25,6 +26,7 @@ class AppButton extends StatelessWidget {
   final bool isLoading;
   final bool expand;
   final String? semanticLabel;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,7 @@ class AppButton extends StatelessWidget {
       label: semanticLabel,
       child: SizedBox(
         width: expand ? double.infinity : null,
-        height: 56,
+        height: height,
         child: action,
       ),
     );

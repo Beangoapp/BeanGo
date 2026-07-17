@@ -26,6 +26,7 @@ class HeroCoffeeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final colors = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Semantics(
       container: true,
@@ -33,77 +34,150 @@ class HeroCoffeeCard extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: height,
-        child: Material(
-          color: colors.surface,
-          clipBehavior: Clip.antiAlias,
-          shape: RoundedRectangleBorder(
+        child: DecoratedBox(
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppRadius.hero),
-            side: BorderSide(color: colors.outlineVariant),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Image.asset(
-                  imageAsset,
-                  fit: BoxFit.cover,
-                  alignment: const Alignment(0, .08),
-                  semanticLabel: l10n.coffeeVisualLabel,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.md,
-                  AppSpacing.sm,
-                  AppSpacing.md,
-                  AppSpacing.md,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                coffeeName,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.titleLarge
-                                    ?.copyWith(fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: AppSpacing.xxs),
-                              Text(
-                                cafeName,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(color: colors.onSurfaceVariant),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: AppSpacing.sm),
-                        Padding(
-                          padding: const EdgeInsets.only(top: AppSpacing.xxs),
-                          child: Text(
-                            l10n.readyInMinutes(readyMinutes),
-                            style: Theme.of(context).textTheme.labelMedium
-                                ?.copyWith(color: colors.onSurfaceVariant),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSpacing.sm),
-                    AppButton(label: l10n.orderAgain, onPressed: onOrderAgain),
-                  ],
-                ),
+            boxShadow: [
+              BoxShadow(
+                color: colors.shadow.withValues(alpha: isDark ? .24 : .09),
+                blurRadius: 28,
+                offset: const Offset(0, 12),
               ),
             ],
           ),
+          child: Material(
+            color: colors.surface,
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppRadius.hero),
+              side: BorderSide(
+                color: colors.outlineVariant.withValues(alpha: .7),
+              ),
+            ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final imageWidth = (constraints.maxWidth * .46).clamp(
+                  140.0,
+                  184.0,
+                );
+                return Padding(
+                  padding: const EdgeInsets.all(AppSpacing.lg),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: AppSpacing.xs,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      coffeeName,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            letterSpacing: -.5,
+                                          ),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      cafeName,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color: colors.onSurfaceVariant,
+                                          ),
+                                    ),
+                                    const SizedBox(height: AppSpacing.xs),
+                                    Text(
+                                      l10n.readyInMinutes(readyMinutes),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                            color: colors.onSurfaceVariant,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: AppSpacing.md),
+                            _FloatingCoffeeImage(
+                              imageAsset: imageAsset,
+                              semanticLabel: l10n.coffeeVisualLabel,
+                              width: imageWidth,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.md),
+                      AppButton(
+                        label: l10n.orderAgain,
+                        height: 64,
+                        onPressed: onOrderAgain,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FloatingCoffeeImage extends StatelessWidget {
+  const _FloatingCoffeeImage({
+    required this.imageAsset,
+    required this.semanticLabel,
+    required this.width,
+  });
+
+  final String imageAsset;
+  final String semanticLabel;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Container(
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        boxShadow: [
+          BoxShadow(
+            color: colors.shadow.withValues(alpha: .12),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        child: Image.asset(
+          imageAsset,
+          fit: BoxFit.cover,
+          alignment: const Alignment(0, .28),
+          semanticLabel: semanticLabel,
         ),
       ),
     );

@@ -36,6 +36,7 @@ void main() {
     expect(find.text('BeanGo Café'), findsOneWidget);
     expect(find.text('Ready in 4 min'), findsOneWidget);
     expect(find.byType(Image), findsOneWidget);
+    expect(tester.getSize(find.byType(FilledButton)).height, 64);
 
     await tester.tap(find.text('Order Again'));
     expect(orderCount, 1);
