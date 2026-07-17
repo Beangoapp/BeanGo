@@ -151,6 +151,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your number is verified. Your coffee journey starts now.';
 
   @override
+  String get orderAgain => 'Order Again';
+
+  @override
+  String readyInMinutes(int minutes) {
+    return 'Ready in $minutes min';
+  }
+
+  @override
   String get onboardingTitleOne => 'Coffee that knows you';
 
   @override

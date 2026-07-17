@@ -148,6 +148,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'تم التحقق من رقمك. رحلتك مع القهوة تبدأ الآن.';
 
   @override
+  String get orderAgain => 'اطلب مرة أخرى';
+
+  @override
+  String readyInMinutes(int minutes) {
+    return 'جاهز خلال $minutes دقائق';
+  }
+
+  @override
   String get onboardingTitleOne => 'قهوة تعرف ذوقك';
 
   @override

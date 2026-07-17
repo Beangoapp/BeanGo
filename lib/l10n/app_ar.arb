@@ -50,6 +50,11 @@
   },
   "verificationSuccessTitle": "تم بنجاح",
   "verificationSuccessBody": "تم التحقق من رقمك. رحلتك مع القهوة تبدأ الآن.",
+  "orderAgain": "اطلب مرة أخرى",
+  "readyInMinutes": "جاهز خلال {minutes} دقائق",
+  "@readyInMinutes": {
+    "placeholders": {"minutes": {"type": "int"}}
+  },
   "onboardingTitleOne": "قهوة تعرف ذوقك",
   "onboardingBodyOne": "يتعلم BeanGo ذوقك ويقرّب لك الكوب المناسب أينما كنت.",
   "onboardingTitleTwo": "كل المقاهي، بتجربة واحدة راقية",

@@ -362,6 +362,18 @@ abstract class AppLocalizations {
   /// **'Your number is verified. Your coffee journey starts now.'**
   String get verificationSuccessBody;
 
+  /// No description provided for @orderAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Again'**
+  String get orderAgain;
+
+  /// No description provided for @readyInMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready in {minutes} min'**
+  String readyInMinutes(int minutes);
+
   /// No description provided for @onboardingTitleOne.
   ///
   /// In en, this message translates to:

@@ -50,6 +50,11 @@
   },
   "verificationSuccessTitle": "You're all set",
   "verificationSuccessBody": "Your number is verified. Your coffee journey starts now.",
+  "orderAgain": "Order Again",
+  "readyInMinutes": "Ready in {minutes} min",
+  "@readyInMinutes": {
+    "placeholders": {"minutes": {"type": "int"}}
+  },
   "onboardingTitleOne": "Coffee that knows you",
   "onboardingBodyOne": "BeanGo learns your taste and brings the right cup closer, wherever you are.",
   "onboardingTitleTwo": "Every café. One elegant experience.",
