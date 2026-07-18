@@ -13,4 +13,8 @@ abstract final class AppIcons {
   static const close = Icons.close_rounded;
   static const check = Icons.check_rounded;
   static const error = Icons.error_outline_rounded;
+  static const notifications = Icons.notifications_none_rounded;
+  static const weather = Icons.wb_sunny_outlined;
+  static const location = Icons.location_on_outlined;
+  static const sparkle = Icons.auto_awesome_rounded;
 }

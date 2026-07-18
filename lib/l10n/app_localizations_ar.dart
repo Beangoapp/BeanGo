@@ -174,4 +174,81 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get onboardingBodyThree => 'اقتراحات ذكية تناسب روتينك ومزاجك ولحظتك.';
+
+  @override
+  String get goodMorning => 'صباح الخير';
+
+  @override
+  String get goodAfternoon => 'مساء الخير';
+
+  @override
+  String get goodEvening => 'مساء الخير';
+
+  @override
+  String get coffeeLover => 'عاشق القهوة';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get aiRecommendation => 'اختيار يناسب لحظتك';
+
+  @override
+  String get recommendationBody => 'اقتراح مدروس بناءً على وقتك وروتين قهوتك.';
+
+  @override
+  String get why => 'لماذا؟';
+
+  @override
+  String get nearbyCafes => 'المقاهي القريبة';
+
+  @override
+  String get nearbyEmpty =>
+      'ستظهر المقاهي القريبة عند تفعيل الوصول إلى الموقع.';
+
+  @override
+  String get rewards => 'مكافآت BeanGo';
+
+  @override
+  String get rewardsBody => 'اكسب نقاطًا مع كل طلب قهوة.';
+
+  @override
+  String points(int count) {
+    return '$count نقطة';
+  }
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get explore => 'استكشف';
+
+  @override
+  String get orders => 'الطلبات';
+
+  @override
+  String get profile => 'حسابي';
+
+  @override
+  String get flatWhite => 'فلات وايت';
+
+  @override
+  String get icedLatte => 'آيس لاتيه';
+
+  @override
+  String get coldBrew => 'كولد برو';
+
+  @override
+  String get espresso => 'إسبريسو';
+
+  @override
+  String get decaf => 'قهوة منزوعة الكافيين';
+
+  @override
+  String get recommendationReason =>
+      'اختار BeanGo هذه القهوة بناءً على وقت اليوم وتفضيلاتك.';
+
+  @override
+  String get recommendationsUnavailable =>
+      'يتم تحديث الاقتراحات. حاول مجددًا بعد قليل.';
 }

@@ -35,6 +35,7 @@ class Recommendation<T> {
 class RecommendationBundle {
   const RecommendationBundle({
     required this.timeBased,
+    this.nearbyCafes = const [],
     this.weatherBased,
     this.favorite,
     this.nearby,
@@ -42,6 +43,7 @@ class RecommendationBundle {
   });
 
   final Recommendation<DrinkStyle> timeBased;
+  final List<NearbyCafe> nearbyCafes;
   final Recommendation<DrinkStyle>? weatherBased;
   final Recommendation<CoffeeOption>? favorite;
   final Recommendation<NearbyCafe>? nearby;

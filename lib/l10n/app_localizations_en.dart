@@ -178,4 +178,82 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingBodyThree =>
       'Smart recommendations shaped by your routine, mood, and moment.';
+
+  @override
+  String get goodMorning => 'Good morning';
+
+  @override
+  String get goodAfternoon => 'Good afternoon';
+
+  @override
+  String get goodEvening => 'Good evening';
+
+  @override
+  String get coffeeLover => 'Coffee lover';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get aiRecommendation => 'Made for your moment';
+
+  @override
+  String get recommendationBody =>
+      'A thoughtful pick based on your time and coffee routine.';
+
+  @override
+  String get why => 'Why?';
+
+  @override
+  String get nearbyCafes => 'Nearby cafés';
+
+  @override
+  String get nearbyEmpty =>
+      'Nearby cafés will appear when location access is enabled.';
+
+  @override
+  String get rewards => 'BeanGo Rewards';
+
+  @override
+  String get rewardsBody => 'Earn points with every coffee order.';
+
+  @override
+  String points(int count) {
+    return '$count points';
+  }
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get explore => 'Explore';
+
+  @override
+  String get orders => 'Orders';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get flatWhite => 'Flat White';
+
+  @override
+  String get icedLatte => 'Iced Latte';
+
+  @override
+  String get coldBrew => 'Cold Brew';
+
+  @override
+  String get espresso => 'Espresso';
+
+  @override
+  String get decaf => 'Decaf';
+
+  @override
+  String get recommendationReason =>
+      'BeanGo selected this coffee using the time of day and your preferences.';
+
+  @override
+  String get recommendationsUnavailable =>
+      'Recommendations are refreshing. Please try again shortly.';
 }

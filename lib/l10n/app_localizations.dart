@@ -409,6 +409,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Smart recommendations shaped by your routine, mood, and moment.'**
   String get onboardingBodyThree;
+
+  /// No description provided for @goodMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning'**
+  String get goodMorning;
+
+  /// No description provided for @goodAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good afternoon'**
+  String get goodAfternoon;
+
+  /// No description provided for @goodEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening'**
+  String get goodEvening;
+
+  /// No description provided for @coffeeLover.
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee lover'**
+  String get coffeeLover;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @aiRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Made for your moment'**
+  String get aiRecommendation;
+
+  /// No description provided for @recommendationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A thoughtful pick based on your time and coffee routine.'**
+  String get recommendationBody;
+
+  /// No description provided for @why.
+  ///
+  /// In en, this message translates to:
+  /// **'Why?'**
+  String get why;
+
+  /// No description provided for @nearbyCafes.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby cafés'**
+  String get nearbyCafes;
+
+  /// No description provided for @nearbyEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby cafés will appear when location access is enabled.'**
+  String get nearbyEmpty;
+
+  /// No description provided for @rewards.
+  ///
+  /// In en, this message translates to:
+  /// **'BeanGo Rewards'**
+  String get rewards;
+
+  /// No description provided for @rewardsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn points with every coffee order.'**
+  String get rewardsBody;
+
+  /// No description provided for @points.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} points'**
+  String points(int count);
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @explore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get explore;
+
+  /// No description provided for @orders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get orders;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @flatWhite.
+  ///
+  /// In en, this message translates to:
+  /// **'Flat White'**
+  String get flatWhite;
+
+  /// No description provided for @icedLatte.
+  ///
+  /// In en, this message translates to:
+  /// **'Iced Latte'**
+  String get icedLatte;
+
+  /// No description provided for @coldBrew.
+  ///
+  /// In en, this message translates to:
+  /// **'Cold Brew'**
+  String get coldBrew;
+
+  /// No description provided for @espresso.
+  ///
+  /// In en, this message translates to:
+  /// **'Espresso'**
+  String get espresso;
+
+  /// No description provided for @decaf.
+  ///
+  /// In en, this message translates to:
+  /// **'Decaf'**
+  String get decaf;
+
+  /// No description provided for @recommendationReason.
+  ///
+  /// In en, this message translates to:
+  /// **'BeanGo selected this coffee using the time of day and your preferences.'**
+  String get recommendationReason;
+
+  /// No description provided for @recommendationsUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendations are refreshing. Please try again shortly.'**
+  String get recommendationsUnavailable;
 }
 
 class _AppLocalizationsDelegate

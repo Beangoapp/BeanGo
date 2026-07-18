@@ -42,6 +42,7 @@ class RecommendationEngine {
 
     return RecommendationBundle(
       timeBased: timeService.recommend(request.now),
+      nearbyCafes: nearbyCafes,
       weatherBased: weatherService.recommend(weather),
       favorite: orderService.favorite(orders),
       nearby: nearbyService.recommend(nearbyCafes),
