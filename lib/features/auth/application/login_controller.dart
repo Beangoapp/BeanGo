@@ -1,10 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../data/auth_repository.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>(
-  (ref) => SupabaseAuthRepository(Supabase.instance.client),
+  (ref) => const LocalDemoAuthRepository(),
 );
 
 final loginControllerProvider = AsyncNotifierProvider<LoginController, void>(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_icons.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_cards.dart';
@@ -45,7 +47,10 @@ class HomeScreen extends ConsumerWidget {
                       now: request.now,
                     ),
                     const SizedBox(height: AppSpacing.lg),
-                    _HeroSection(bundle: bundle),
+                    _HeroSection(
+                      bundle: bundle,
+                      onOrder: () => context.push(AppRoutes.coffeeDetails),
+                    ),
                     const SizedBox(height: AppSpacing.lg),
                     _RecommendationCard(bundle: bundle),
                     const SizedBox(height: AppSpacing.xl),
@@ -121,9 +126,10 @@ class _GreetingHeader extends StatelessWidget {
 }
 
 class _HeroSection extends StatelessWidget {
-  const _HeroSection({required this.bundle});
+  const _HeroSection({required this.bundle, required this.onOrder});
 
   final RecommendationBundle bundle;
+  final VoidCallback onOrder;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +141,7 @@ class _HeroSection extends StatelessWidget {
       cafeName: bundle.nearby?.value.name ?? 'BeanGo',
       readyMinutes: bundle.nearby?.value.estimatedPreparationMinutes ?? 5,
       imageAsset: _drinkAsset(style),
-      onOrderAgain: order == null ? null : () {},
+      onOrderAgain: onOrder,
     );
   }
 }

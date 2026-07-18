@@ -553,6 +553,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recommendations are refreshing. Please try again shortly.'**
   String get recommendationsUnavailable;
+
+  /// No description provided for @demoOtpHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo code: 123456'**
+  String get demoOtpHint;
+
+  /// No description provided for @coffeeDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee details'**
+  String get coffeeDetails;
+
+  /// No description provided for @signatureFlatWhite.
+  ///
+  /// In en, this message translates to:
+  /// **'Signature Flat White'**
+  String get signatureFlatWhite;
+
+  /// No description provided for @demoCafeName.
+  ///
+  /// In en, this message translates to:
+  /// **'BeanGo Roastery'**
+  String get demoCafeName;
+
+  /// No description provided for @coffeeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Velvety steamed milk over a balanced double espresso, crafted for a smooth finish.'**
+  String get coffeeDescription;
+
+  /// No description provided for @size.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get size;
+
+  /// No description provided for @regular.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular'**
+  String get regular;
+
+  /// No description provided for @large.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get large;
+
+  /// No description provided for @quantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantity;
+
+  /// No description provided for @addToCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to cart · {price}'**
+  String addToCart(String price);
+
+  /// No description provided for @cart.
+  ///
+  /// In en, this message translates to:
+  /// **'Cart'**
+  String get cart;
+
+  /// No description provided for @yourOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order'**
+  String get yourOrder;
+
+  /// No description provided for @subtotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get subtotal;
+
+  /// No description provided for @serviceFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Service fee'**
+  String get serviceFee;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @continueToCheckout.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to checkout'**
+  String get continueToCheckout;
+
+  /// No description provided for @checkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkout;
+
+  /// No description provided for @pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup'**
+  String get pickup;
+
+  /// No description provided for @pickupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready at BeanGo Roastery in about 5 minutes'**
+  String get pickupBody;
+
+  /// No description provided for @payment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment'**
+  String get payment;
+
+  /// No description provided for @paymentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo payment · No charge will be made'**
+  String get paymentBody;
+
+  /// No description provided for @placeOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Place order · {price}'**
+  String placeOrder(String price);
+
+  /// No description provided for @orderConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Order confirmed'**
+  String get orderConfirmed;
+
+  /// No description provided for @orderSuccessBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your coffee is being prepared and will be ready in about 5 minutes.'**
+  String get orderSuccessBody;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to home'**
+  String get backToHome;
+
+  /// No description provided for @remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get remove;
 }
 
 class _AppLocalizationsDelegate

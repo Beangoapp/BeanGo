@@ -149,6 +149,13 @@ class _VerificationScreenState extends ConsumerState<VerificationScreen>
                         color: AppColors.textSecondary,
                       ),
                     ),
+                    const SizedBox(height: AppSpacing.sm),
+                    Text(
+                      l10n.demoOtpHint,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
                     const SizedBox(height: AppSpacing.xl),
                     TextFormField(
                       controller: _codeController,

@@ -2,6 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/home/presentation/home_screen.dart';
+import '../../features/order_demo/presentation/cart_screen.dart';
+import '../../features/order_demo/presentation/checkout_screen.dart';
+import '../../features/order_demo/presentation/coffee_details_screen.dart';
+import '../../features/order_demo/presentation/order_success_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/auth_success_screen.dart';
 import '../../features/auth/presentation/verification_screen.dart';
@@ -17,6 +21,10 @@ abstract final class AppRoutes {
   static const login = '/login';
   static const verification = '/verification';
   static const authSuccess = '/auth-success';
+  static const coffeeDetails = '/coffee-details';
+  static const cart = '/cart';
+  static const checkout = '/checkout';
+  static const orderSuccess = '/order-success';
 }
 
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -54,6 +62,22 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.home,
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.coffeeDetails,
+        builder: (context, state) => const CoffeeDetailsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.cart,
+        builder: (context, state) => const CartScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.checkout,
+        builder: (context, state) => const CheckoutScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.orderSuccess,
+        builder: (context, state) => const OrderSuccessScreen(),
       ),
     ],
   );

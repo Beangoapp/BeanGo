@@ -256,4 +256,88 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get recommendationsUnavailable =>
       'Recommendations are refreshing. Please try again shortly.';
+
+  @override
+  String get demoOtpHint => 'Demo code: 123456';
+
+  @override
+  String get coffeeDetails => 'Coffee details';
+
+  @override
+  String get signatureFlatWhite => 'Signature Flat White';
+
+  @override
+  String get demoCafeName => 'BeanGo Roastery';
+
+  @override
+  String get coffeeDescription =>
+      'Velvety steamed milk over a balanced double espresso, crafted for a smooth finish.';
+
+  @override
+  String get size => 'Size';
+
+  @override
+  String get regular => 'Regular';
+
+  @override
+  String get large => 'Large';
+
+  @override
+  String get quantity => 'Quantity';
+
+  @override
+  String addToCart(String price) {
+    return 'Add to cart · $price';
+  }
+
+  @override
+  String get cart => 'Cart';
+
+  @override
+  String get yourOrder => 'Your order';
+
+  @override
+  String get subtotal => 'Subtotal';
+
+  @override
+  String get serviceFee => 'Service fee';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get continueToCheckout => 'Continue to checkout';
+
+  @override
+  String get checkout => 'Checkout';
+
+  @override
+  String get pickup => 'Pickup';
+
+  @override
+  String get pickupBody => 'Ready at BeanGo Roastery in about 5 minutes';
+
+  @override
+  String get payment => 'Payment';
+
+  @override
+  String get paymentBody => 'Demo payment · No charge will be made';
+
+  @override
+  String placeOrder(String price) {
+    return 'Place order · $price';
+  }
+
+  @override
+  String get orderConfirmed => 'Order confirmed';
+
+  @override
+  String get orderSuccessBody =>
+      'Your coffee is being prepared and will be ready in about 5 minutes.';
+
+  @override
+  String get backToHome => 'Back to home';
+
+  @override
+  String get remove => 'Remove';
 }

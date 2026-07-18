@@ -251,4 +251,88 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get recommendationsUnavailable =>
       'يتم تحديث الاقتراحات. حاول مجددًا بعد قليل.';
+
+  @override
+  String get demoOtpHint => 'رمز النسخة التجريبية: 123456';
+
+  @override
+  String get coffeeDetails => 'تفاصيل القهوة';
+
+  @override
+  String get signatureFlatWhite => 'فلات وايت سيجنتشر';
+
+  @override
+  String get demoCafeName => 'محمصة BeanGo';
+
+  @override
+  String get coffeeDescription =>
+      'حليب مخملي مبخر فوق جرعتين متوازنتين من الإسبريسو بنهاية ناعمة.';
+
+  @override
+  String get size => 'الحجم';
+
+  @override
+  String get regular => 'عادي';
+
+  @override
+  String get large => 'كبير';
+
+  @override
+  String get quantity => 'الكمية';
+
+  @override
+  String addToCart(String price) {
+    return 'أضف للسلة · $price';
+  }
+
+  @override
+  String get cart => 'السلة';
+
+  @override
+  String get yourOrder => 'طلبك';
+
+  @override
+  String get subtotal => 'المجموع الفرعي';
+
+  @override
+  String get serviceFee => 'رسوم الخدمة';
+
+  @override
+  String get total => 'الإجمالي';
+
+  @override
+  String get continueToCheckout => 'المتابعة للدفع';
+
+  @override
+  String get checkout => 'الدفع';
+
+  @override
+  String get pickup => 'الاستلام';
+
+  @override
+  String get pickupBody => 'جاهز في محمصة BeanGo خلال نحو 5 دقائق';
+
+  @override
+  String get payment => 'الدفع';
+
+  @override
+  String get paymentBody => 'دفع تجريبي · لن يتم خصم أي مبلغ';
+
+  @override
+  String placeOrder(String price) {
+    return 'تأكيد الطلب · $price';
+  }
+
+  @override
+  String get orderConfirmed => 'تم تأكيد الطلب';
+
+  @override
+  String get orderSuccessBody =>
+      'يتم الآن تحضير قهوتك وستكون جاهزة خلال نحو 5 دقائق.';
+
+  @override
+  String get backToHome => 'العودة للرئيسية';
+
+  @override
+  String get remove => 'إزالة';
 }
