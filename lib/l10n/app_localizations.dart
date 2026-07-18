@@ -575,7 +575,7 @@ abstract class AppLocalizations {
   /// No description provided for @demoCafeName.
   ///
   /// In en, this message translates to:
-  /// **'BeanGo Roastery'**
+  /// **'Flat White'**
   String get demoCafeName;
 
   /// No description provided for @coffeeDescription.
@@ -665,7 +665,7 @@ abstract class AppLocalizations {
   /// No description provided for @pickupBody.
   ///
   /// In en, this message translates to:
-  /// **'Ready at BeanGo Roastery in about 5 minutes'**
+  /// **'Ready at Flat White in about 5 minutes'**
   String get pickupBody;
 
   /// No description provided for @payment.
@@ -809,8 +809,29 @@ abstract class AppLocalizations {
   /// No description provided for @roasteryDistrict.
   ///
   /// In en, this message translates to:
-  /// **'District Roastery'**
+  /// **'Earth Roastery'**
   String get roasteryDistrict;
+
+  /// No description provided for @newArrivals.
+  String get newArrivals;
+
+  /// No description provided for @matchaLatte.
+  String get matchaLatte;
+
+  /// No description provided for @pistachioLatte.
+  String get pistachioLatte;
+
+  /// No description provided for @saffronLatte.
+  String get saffronLatte;
+
+  /// No description provided for @cortado.
+  String get cortado;
+
+  /// No description provided for @v60.
+  String get v60;
+
+  /// No description provided for @cappuccino.
+  String get cappuccino;
 }
 
 class _AppLocalizationsDelegate

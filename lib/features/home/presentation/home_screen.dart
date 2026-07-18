@@ -8,9 +8,7 @@ import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_cards.dart';
 import '../../recommendations/application/recommendation_providers.dart';
-import '../../recommendations/domain/models/coffee_option.dart';
 import '../../recommendations/domain/models/nearby_cafe.dart';
-import '../../recommendations/domain/models/recommendation.dart';
 import '../application/home_providers.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -23,6 +21,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final _promoController = PageController(viewportFraction: .92);
   var _promoIndex = 0;
+  var _categoryIndex = 0;
 
   @override
   void dispose() {
@@ -82,25 +81,34 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       delay: const Duration(milliseconds: 150),
                       child: const _OrderAgainSection(),
                     ),
-                    const SizedBox(height: AppSpacing.xl),
-                    const _HomeEntrance(
-                      delay: Duration(milliseconds: 200),
-                      child: _CategoriesSection(),
+                    const SizedBox(height: AppSpacing.lg),
+                    _HomeEntrance(
+                      delay: const Duration(milliseconds: 200),
+                      child: _CategoriesSection(
+                        selectedIndex: _categoryIndex,
+                        onSelected: (index) =>
+                            setState(() => _categoryIndex = index),
+                      ),
                     ),
-                    const SizedBox(height: AppSpacing.xl),
+                    const SizedBox(height: AppSpacing.lg),
                     _HomeEntrance(
                       delay: const Duration(milliseconds: 250),
-                      child: _RecommendedSection(bundle: bundle),
+                      child: const _RecommendedSection(),
                     ),
-                    const SizedBox(height: AppSpacing.xl),
+                    const SizedBox(height: AppSpacing.lg),
                     _HomeEntrance(
                       delay: const Duration(milliseconds: 300),
                       child: _NearbySection(cafes: bundle.nearbyCafes),
                     ),
-                    const SizedBox(height: AppSpacing.xl),
+                    const SizedBox(height: AppSpacing.lg),
                     const _HomeEntrance(
                       delay: Duration(milliseconds: 350),
                       child: _PopularSection(),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    const _HomeEntrance(
+                      delay: Duration(milliseconds: 400),
+                      child: _NewArrivalsSection(),
                     ),
                   ],
                 ),
@@ -265,8 +273,16 @@ class _PromotionCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final promotions = [
-      (l10n.promoTitleOne, l10n.promoBodyOne, 'assets/images/iced_latte.png'),
-      (l10n.promoTitleTwo, l10n.promoBodyTwo, 'assets/images/croissant.png'),
+      (
+        l10n.promoTitleOne,
+        l10n.promoBodyOne,
+        'assets/images/promo_coffee_tonic.png',
+      ),
+      (
+        l10n.promoTitleTwo,
+        l10n.promoBodyTwo,
+        'assets/images/promo_coffee_pairing.png',
+      ),
     ];
     return Column(
       children: [
@@ -396,22 +412,29 @@ class _OrderAgainSection extends StatelessWidget {
         _SectionHeader(title: l10n.orderAgain),
         const SizedBox(height: AppSpacing.sm),
         SizedBox(
-          height: 196,
+          height: 176,
           child: ListView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             children: [
               _CoffeeTile(
-                name: l10n.signatureFlatWhite,
-                cafe: l10n.demoCafeName,
+                name: l10n.spanishLatte,
+                cafe: 'Flat White',
+                image: 'assets/images/spanish_latte.png',
+                onTap: () => context.push(AppRoutes.coffeeDetails),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              _CoffeeTile(
+                name: l10n.flatWhite,
+                cafe: '% Arabica',
                 image: 'assets/images/flat_white.png',
                 onTap: () => context.push(AppRoutes.coffeeDetails),
               ),
               const SizedBox(width: AppSpacing.sm),
               _CoffeeTile(
-                name: l10n.icedLatte,
-                cafe: l10n.demoCafeName,
-                image: 'assets/images/iced_latte.png',
+                name: l10n.cortado,
+                cafe: 'Volume Cafe',
+                image: 'assets/images/hero_coffee.png',
                 onTap: () => context.push(AppRoutes.coffeeDetails),
               ),
             ],
@@ -423,7 +446,13 @@ class _OrderAgainSection extends StatelessWidget {
 }
 
 class _CategoriesSection extends StatelessWidget {
-  const _CategoriesSection();
+  const _CategoriesSection({
+    required this.selectedIndex,
+    required this.onSelected,
+  });
+
+  final int selectedIndex;
+  final ValueChanged<int> onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -444,10 +473,15 @@ class _CategoriesSection extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
-            separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.xs),
+            separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.xxs),
             itemBuilder: (context, index) {
               final category = categories[index];
-              return _CategoryItem(label: category.$1, icon: category.$2);
+              return _CategoryItem(
+                label: category.$1,
+                icon: category.$2,
+                selected: index == selectedIndex,
+                onTap: () => onSelected(index),
+              );
             },
           ),
         ),
@@ -457,25 +491,37 @@ class _CategoriesSection extends StatelessWidget {
 }
 
 class _RecommendedSection extends StatelessWidget {
-  const _RecommendedSection({required this.bundle});
-
-  final RecommendationBundle bundle;
+  const _RecommendedSection();
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final style = (bundle.weatherBased ?? bundle.timeBased).value;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _SectionHeader(title: l10n.recommendedForYou),
         const SizedBox(height: AppSpacing.sm),
-        _WideCoffeeCard(
-          name: _drinkName(context, style),
-          cafe: l10n.demoCafeName,
-          image: _drinkAsset(style),
-          badge: l10n.aiPick,
-          onTap: () => context.push(AppRoutes.coffeeDetails),
+        SizedBox(
+          height: 176,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _CoffeeTile(
+                name: l10n.v60,
+                cafe: 'Earth Roastery',
+                image: 'assets/images/americano.png',
+                onTap: () => context.push(AppRoutes.coffeeDetails),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              _CoffeeTile(
+                name: l10n.coldBrew,
+                cafe: 'CAF',
+                image: 'assets/images/cold_brew.png',
+                onTap: () => context.push(AppRoutes.coffeeDetails),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -495,17 +541,24 @@ class _NearbySection extends StatelessWidget {
         : [
             NearbyCafe(
               id: 'demo-1',
-              name: l10n.demoCafeName,
+              name: 'CAF',
               distanceMeters: 800,
               estimatedPreparationMinutes: 5,
               menu: const [],
             ),
             NearbyCafe(
               id: 'demo-2',
-              name: l10n.roasteryDistrict,
+              name: 'Halo',
               distanceMeters: 1400,
               estimatedPreparationMinutes: 8,
               menu: const [],
+            ),
+            const NearbyCafe(
+              id: 'demo-3',
+              name: 'Espresso Lab',
+              distanceMeters: 2100,
+              estimatedPreparationMinutes: 9,
+              menu: [],
             ),
           ];
     return Column(
@@ -518,9 +571,11 @@ class _NearbySection extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: AppSpacing.sm),
             child: _CafeListCard(
               cafe: entry.$2,
-              image: entry.$1.isEven
-                  ? 'assets/images/hero_coffee.png'
-                  : 'assets/images/cappuccino.png',
+              image: const [
+                'assets/images/coffee_beans.png',
+                'assets/images/croissant.png',
+                'assets/images/empty_cup.png',
+              ][entry.$1 % 3],
             ),
           ),
         ),
@@ -541,22 +596,67 @@ class _PopularSection extends StatelessWidget {
         _SectionHeader(title: l10n.popularToday),
         const SizedBox(height: AppSpacing.sm),
         SizedBox(
-          height: 196,
+          height: 176,
           child: ListView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             children: [
               _CoffeeTile(
-                name: l10n.spanishLatte,
-                cafe: l10n.demoCafeName,
-                image: 'assets/images/spanish_latte.png',
+                name: l10n.icedLatte,
+                cafe: 'Halo',
+                image: 'assets/images/iced_latte.png',
                 onTap: () => context.push(AppRoutes.coffeeDetails),
               ),
               const SizedBox(width: AppSpacing.sm),
               _CoffeeTile(
-                name: l10n.coldBrew,
-                cafe: l10n.roasteryDistrict,
-                image: 'assets/images/cold_brew.png',
+                name: l10n.cappuccino,
+                cafe: 'Espresso Lab',
+                image: 'assets/images/cappuccino.png',
+                onTap: () => context.push(AppRoutes.coffeeDetails),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _NewArrivalsSection extends StatelessWidget {
+  const _NewArrivalsSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _SectionHeader(title: l10n.newArrivals),
+        const SizedBox(height: AppSpacing.sm),
+        SizedBox(
+          height: 176,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            children: [
+              _CoffeeTile(
+                name: l10n.matchaLatte,
+                cafe: 'Volume Cafe',
+                image: 'assets/images/matcha_latte.png',
+                onTap: () => context.push(AppRoutes.coffeeDetails),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              _CoffeeTile(
+                name: l10n.pistachioLatte,
+                cafe: 'Espresso Lab',
+                image: 'assets/images/pistachio_latte.png',
+                onTap: () => context.push(AppRoutes.coffeeDetails),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              _CoffeeTile(
+                name: l10n.saffronLatte,
+                cafe: '% Arabica',
+                image: 'assets/images/saffron_latte.png',
                 onTap: () => context.push(AppRoutes.coffeeDetails),
               ),
             ],
@@ -583,10 +683,17 @@ class _SectionHeader extends StatelessWidget {
 }
 
 class _CategoryItem extends StatelessWidget {
-  const _CategoryItem({required this.label, required this.icon});
+  const _CategoryItem({
+    required this.label,
+    required this.icon,
+    required this.selected,
+    required this.onTap,
+  });
 
   final String label;
   final IconData icon;
+  final bool selected;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -595,20 +702,27 @@ class _CategoryItem extends StatelessWidget {
       button: true,
       label: label,
       child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(AppRadius.input),
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
         child: SizedBox(
           width: 72,
           child: Column(
             children: [
-              Container(
-                width: 56,
-                height: 56,
+              AnimatedContainer(
+                duration: AppMotion.standard,
+                width: 52,
+                height: 52,
                 decoration: BoxDecoration(
-                  color: colors.surfaceContainerHigh,
-                  borderRadius: BorderRadius.circular(AppRadius.input),
+                  color: selected
+                      ? colors.primary
+                      : colors.surfaceContainerHigh,
+                  shape: BoxShape.circle,
                 ),
-                child: Icon(icon, color: colors.primary, size: 24),
+                child: Icon(
+                  icon,
+                  color: selected ? colors.onPrimary : colors.primary,
+                  size: 23,
+                ),
               ),
               const SizedBox(height: AppSpacing.xs),
               Text(
@@ -643,106 +757,44 @@ class _CoffeeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-    width: 164,
-    child: AppCard(
-      onTap: onTap,
-      padding: EdgeInsets.zero,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: SizedBox(
-              width: double.infinity,
-              child: Image.asset(image, fit: BoxFit.cover),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(AppSpacing.sm),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+    width: 124,
+    child: _HomeCardShadow(
+      child: AppCard(
+        onTap: onTap,
+        padding: EdgeInsets.zero,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(AppSpacing.xxs),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(AppRadius.control),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Image.asset(image, fit: BoxFit.cover),
+                  ),
                 ),
-                Text(
-                  cafe,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-class _WideCoffeeCard extends StatelessWidget {
-  const _WideCoffeeCard({
-    required this.name,
-    required this.cafe,
-    required this.image,
-    required this.badge,
-    required this.onTap,
-  });
-
-  final String name;
-  final String cafe;
-  final String image;
-  final String badge;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-    height: 154,
-    child: AppCard(
-      onTap: onTap,
-      padding: EdgeInsets.zero,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 148,
-            height: double.infinity,
-            child: Image.asset(image, fit: BoxFit.cover),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(AppSpacing.md),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(
+                AppSpacing.xs,
+                AppSpacing.xs,
+                AppSpacing.xs,
+                AppSpacing.sm,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.xs,
-                      vertical: AppSpacing.xxs,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(AppRadius.pill),
-                    ),
-                    child: Text(
-                      badge,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
                   Text(
                     name,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: AppSpacing.xxs),
                   Text(
                     cafe,
                     maxLines: 1,
@@ -752,11 +804,35 @@ class _WideCoffeeCard extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
+}
+
+class _HomeCardShadow extends StatelessWidget {
+  const _HomeCardShadow({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        boxShadow: [
+          BoxShadow(
+            color: colors.shadow.withValues(alpha: .06),
+            blurRadius: 18,
+            offset: const Offset(0, 7),
+          ),
+        ],
+      ),
+      child: child,
+    );
+  }
 }
 
 class _CafeListCard extends StatelessWidget {
@@ -768,56 +844,58 @@ class _CafeListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SizedBox(
     height: 116,
-    child: AppCard(
-      padding: EdgeInsets.zero,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 118,
-            height: double.infinity,
-            child: Image.asset(image, fit: BoxFit.cover),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(AppSpacing.md),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    cafe.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w800,
+    child: _HomeCardShadow(
+      child: AppCard(
+        padding: EdgeInsets.zero,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 118,
+              height: double.infinity,
+              child: Image.asset(image, fit: BoxFit.cover),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      cafe.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: AppSpacing.xs),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.star_rounded,
-                        size: 16,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      const SizedBox(width: AppSpacing.xxs),
-                      const Text('4.8'),
-                      const SizedBox(width: AppSpacing.sm),
-                      Expanded(
-                        child: Text(
-                          '${(cafe.distanceMeters / 1000).toStringAsFixed(1)} km · ${AppLocalizations.of(context).readyInMinutes(cafe.estimatedPreparationMinutes)}',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall,
+                    const SizedBox(height: AppSpacing.xs),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star_rounded,
+                          size: 16,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        const SizedBox(width: AppSpacing.xxs),
+                        const Text('4.8'),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: Text(
+                            '${(cafe.distanceMeters / 1000).toStringAsFixed(1)} km · ${AppLocalizations.of(context).readyInMinutes(cafe.estimatedPreparationMinutes)}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
@@ -941,22 +1019,3 @@ class _HomeError extends StatelessWidget {
     ),
   );
 }
-
-String _drinkName(BuildContext context, DrinkStyle style) {
-  final l10n = AppLocalizations.of(context);
-  return switch (style) {
-    DrinkStyle.espresso => l10n.espresso,
-    DrinkStyle.flatWhite => l10n.flatWhite,
-    DrinkStyle.coldBrew => l10n.coldBrew,
-    DrinkStyle.icedLatte => l10n.icedLatte,
-    DrinkStyle.decaf => l10n.decaf,
-  };
-}
-
-String _drinkAsset(DrinkStyle style) => switch (style) {
-  DrinkStyle.espresso => 'assets/images/americano.png',
-  DrinkStyle.flatWhite => 'assets/images/flat_white.png',
-  DrinkStyle.coldBrew => 'assets/images/cold_brew.png',
-  DrinkStyle.icedLatte => 'assets/images/iced_latte.png',
-  DrinkStyle.decaf => 'assets/images/cappuccino.png',
-};

@@ -89,7 +89,7 @@
   ,"demoOtpHint": "رمز النسخة التجريبية: 123456",
   "coffeeDetails": "تفاصيل القهوة",
   "signatureFlatWhite": "فلات وايت سيجنتشر",
-  "demoCafeName": "محمصة BeanGo",
+  "demoCafeName": "Flat White",
   "coffeeDescription": "حليب مخملي مبخر فوق جرعتين متوازنتين من الإسبريسو بنهاية ناعمة.",
   "size": "الحجم",
   "regular": "عادي",
@@ -105,7 +105,7 @@
   "continueToCheckout": "المتابعة للدفع",
   "checkout": "الدفع",
   "pickup": "الاستلام",
-  "pickupBody": "جاهز في محمصة BeanGo خلال نحو 5 دقائق",
+  "pickupBody": "جاهز في Flat White خلال نحو 5 دقائق",
   "payment": "الدفع",
   "paymentBody": "دفع تجريبي · لن يتم خصم أي مبلغ",
   "placeOrder": "تأكيد الطلب · {price}",
@@ -130,5 +130,12 @@
   "aiPick": "اختيار يناسبك",
   "popularToday": "الأكثر طلبًا اليوم",
   "spanishLatte": "سبانش لاتيه",
-  "roasteryDistrict": "محمصة ديستريكت"
+  "roasteryDistrict": "Earth Roastery",
+  "newArrivals": "وصل حديثًا",
+  "matchaLatte": "ماتشا لاتيه",
+  "pistachioLatte": "بيستاشيو لاتيه",
+  "saffronLatte": "زعفران لاتيه",
+  "cortado": "كورتادو",
+  "v60": "V60",
+  "cappuccino": "كابتشينو"
 }
