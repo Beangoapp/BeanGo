@@ -42,21 +42,35 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 sliver: SliverList.list(
                   children: [
-                    _GreetingHeader(
-                      name: ref.watch(homeUserNameProvider),
-                      now: request.now,
+                    _HomeEntrance(
+                      child: _GreetingHeader(
+                        name: ref.watch(homeUserNameProvider),
+                        now: request.now,
+                      ),
                     ),
                     const SizedBox(height: AppSpacing.lg),
-                    _HeroSection(
-                      bundle: bundle,
-                      onOrder: () => context.push(AppRoutes.coffeeDetails),
+                    _HomeEntrance(
+                      delay: const Duration(milliseconds: 70),
+                      child: _HeroSection(
+                        bundle: bundle,
+                        onOrder: () => context.push(AppRoutes.coffeeDetails),
+                      ),
                     ),
                     const SizedBox(height: AppSpacing.lg),
-                    _RecommendationCard(bundle: bundle),
+                    _HomeEntrance(
+                      delay: const Duration(milliseconds: 140),
+                      child: _RecommendationCard(bundle: bundle),
+                    ),
                     const SizedBox(height: AppSpacing.xl),
-                    _NearbySection(cafes: bundle.nearbyCafes),
+                    _HomeEntrance(
+                      delay: const Duration(milliseconds: 210),
+                      child: _NearbySection(cafes: bundle.nearbyCafes),
+                    ),
                     const SizedBox(height: AppSpacing.xl),
-                    _RewardsCard(points: points),
+                    _HomeEntrance(
+                      delay: const Duration(milliseconds: 280),
+                      child: _RewardsCard(points: points),
+                    ),
                   ],
                 ),
               ),
@@ -101,24 +115,34 @@ class _GreetingHeader extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                   const SizedBox(width: AppSpacing.xs),
-                  Text(greeting, style: Theme.of(context).textTheme.bodyMedium),
+                  Text(
+                    greeting,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: AppSpacing.xxs),
               Text(
                 displayName,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.w700,
-                  letterSpacing: -.5,
+                  letterSpacing: -.9,
+                  height: 1.08,
                 ),
               ),
             ],
           ),
         ),
-        IconButton.filledTonal(
-          onPressed: () {},
-          icon: const Icon(AppIcons.notifications),
-          tooltip: l10n.notifications,
+        SizedBox.square(
+          dimension: 48,
+          child: IconButton.filledTonal(
+            onPressed: () {},
+            icon: const Icon(AppIcons.notifications, size: 22),
+            tooltip: l10n.notifications,
+          ),
         ),
       ],
     );
@@ -155,65 +179,95 @@ class _RecommendationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final recommendation = bundle.weatherBased ?? bundle.timeBased;
+    final colors = Theme.of(context).colorScheme;
     return AppCard(
-      padding: const EdgeInsets.all(AppSpacing.lg),
+      padding: EdgeInsets.zero,
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(AppRadius.control),
-            child: Image.asset(
-              _drinkAsset(recommendation.value),
-              width: 84,
-              height: 104,
-              fit: BoxFit.cover,
+          Container(
+            width: 108,
+            height: 150,
+            decoration: BoxDecoration(
+              color: colors.primaryContainer.withValues(alpha: .55),
+              borderRadius: const BorderRadiusDirectional.horizontal(
+                start: Radius.circular(AppRadius.card - 1),
+              ),
+            ),
+            padding: const EdgeInsets.all(AppSpacing.sm),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(AppRadius.control),
+              child: Image.asset(
+                _drinkAsset(recommendation.value),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          const SizedBox(width: AppSpacing.md),
+          const SizedBox(width: AppSpacing.lg),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      AppIcons.sparkle,
-                      size: 18,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(width: AppSpacing.xs),
-                    Expanded(
-                      child: Text(
-                        l10n.aiRecommendation,
-                        style: Theme.of(context).textTheme.labelLarge,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(
+                top: AppSpacing.md,
+                end: AppSpacing.md,
+                bottom: AppSpacing.sm,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        AppIcons.sparkle,
+                        size: 18,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                Text(
-                  _drinkName(context, recommendation.value),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                Text(
-                  l10n.recommendationBody,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                TextButton(
-                  onPressed: () => showModalBottomSheet<void>(
-                    context: context,
-                    showDragHandle: true,
-                    builder: (context) => Padding(
-                      padding: const EdgeInsets.all(AppSpacing.lg),
-                      child: Text(l10n.recommendationReason),
+                      const SizedBox(width: AppSpacing.xs),
+                      Expanded(
+                        child: Text(
+                          l10n.aiRecommendation,
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(
+                                color: colors.primary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    _drinkName(context, recommendation.value),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: -.3,
                     ),
                   ),
-                  child: Text(l10n.why),
-                ),
-              ],
+                  const SizedBox(height: AppSpacing.xxs),
+                  Text(
+                    l10n.recommendationBody,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  TextButton(
+                    onPressed: () => showModalBottomSheet<void>(
+                      context: context,
+                      showDragHandle: true,
+                      builder: (context) => Padding(
+                        padding: const EdgeInsets.all(AppSpacing.lg),
+                        child: Text(l10n.recommendationReason),
+                      ),
+                    ),
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xs,
+                      ),
+                      minimumSize: const Size(48, 36),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    child: Text(l10n.why),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -349,31 +403,97 @@ class _HomeNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return NavigationBar(
-      selectedIndex: 0,
-      onDestinationSelected: (_) {},
-      destinations: [
-        NavigationDestination(
-          icon: const Icon(AppIcons.home),
-          label: l10n.home,
+    final colors = Theme.of(context).colorScheme;
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.sm,
+          AppSpacing.xxs,
+          AppSpacing.sm,
+          AppSpacing.xs,
         ),
-        NavigationDestination(
-          icon: const Icon(AppIcons.explore),
-          label: l10n.explore,
+        child: Material(
+          color: colors.surface,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.hero),
+            side: BorderSide(
+              color: colors.outlineVariant.withValues(alpha: .7),
+            ),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: NavigationBar(
+            height: 72,
+            backgroundColor: Colors.transparent,
+            indicatorColor: colors.primaryContainer,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+            selectedIndex: 0,
+            onDestinationSelected: (_) {},
+            destinations: [
+              NavigationDestination(
+                icon: const Icon(AppIcons.home),
+                label: l10n.home,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.explore),
+                label: l10n.explore,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.orders),
+                label: l10n.orders,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.rewards),
+                label: l10n.rewards,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.profile),
+                label: l10n.profile,
+              ),
+            ],
+          ),
         ),
-        NavigationDestination(
-          icon: const Icon(AppIcons.orders),
-          label: l10n.orders,
-        ),
-        NavigationDestination(
-          icon: const Icon(AppIcons.rewards),
-          label: l10n.rewards,
-        ),
-        NavigationDestination(
-          icon: const Icon(AppIcons.profile),
-          label: l10n.profile,
-        ),
-      ],
+      ),
+    );
+  }
+}
+
+class _HomeEntrance extends StatefulWidget {
+  const _HomeEntrance({required this.child, this.delay = Duration.zero});
+
+  final Widget child;
+  final Duration delay;
+
+  @override
+  State<_HomeEntrance> createState() => _HomeEntranceState();
+}
+
+class _HomeEntranceState extends State<_HomeEntrance> {
+  var _visible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future<void>.delayed(widget.delay, () {
+      if (mounted) setState(() => _visible = true);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final reduceMotion = MediaQuery.disableAnimationsOf(context);
+    final visible = reduceMotion || _visible;
+    return AnimatedOpacity(
+      opacity: visible ? 1 : 0,
+      duration: AppMotion.standard,
+      curve: AppMotion.enterCurve,
+      child: AnimatedSlide(
+        offset: visible ? Offset.zero : const Offset(0, .025),
+        duration: AppMotion.standard,
+        curve: AppMotion.enterCurve,
+        child: widget.child,
+      ),
     );
   }
 }

@@ -14,7 +14,7 @@ class HeroCoffeeCard extends StatelessWidget {
     this.imageAsset = 'assets/images/hero_coffee.png',
   });
 
-  static const height = 320.0;
+  static const height = 336.0;
 
   final String coffeeName;
   final String cafeName;
@@ -39,9 +39,9 @@ class HeroCoffeeCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppRadius.hero),
             boxShadow: [
               BoxShadow(
-                color: colors.shadow.withValues(alpha: isDark ? .24 : .09),
-                blurRadius: 28,
-                offset: const Offset(0, 12),
+                color: colors.shadow.withValues(alpha: isDark ? .22 : .08),
+                blurRadius: 32,
+                offset: const Offset(0, 14),
               ),
             ],
           ),
@@ -56,9 +56,9 @@ class HeroCoffeeCard extends StatelessWidget {
             ),
             child: LayoutBuilder(
               builder: (context, constraints) {
-                final imageWidth = (constraints.maxWidth * .46).clamp(
-                  140.0,
-                  184.0,
+                final imageWidth = (constraints.maxWidth * .5).clamp(
+                  148.0,
+                  196.0,
                 );
                 return Padding(
                   padding: const EdgeInsets.all(AppSpacing.lg),
@@ -72,7 +72,7 @@ class HeroCoffeeCard extends StatelessWidget {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  vertical: AppSpacing.xs,
+                                  vertical: AppSpacing.xxs,
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,10 +83,11 @@ class HeroCoffeeCard extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headlineMedium
+                                          .headlineLarge
                                           ?.copyWith(
                                             fontWeight: FontWeight.w700,
-                                            letterSpacing: -.5,
+                                            letterSpacing: -.8,
+                                            height: 1.08,
                                           ),
                                     ),
                                     const Spacer(),
@@ -127,10 +128,10 @@ class HeroCoffeeCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: AppSpacing.md),
+                      const SizedBox(height: AppSpacing.lg),
                       AppButton(
                         label: l10n.orderAgain,
-                        height: 64,
+                        height: 60,
                         onPressed: onOrderAgain,
                       ),
                     ],

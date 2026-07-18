@@ -30,13 +30,13 @@ void main() {
     );
     await tester.pump();
 
-    expect(tester.getSize(find.byType(HeroCoffeeCard)).height, 320);
+    expect(tester.getSize(find.byType(HeroCoffeeCard)).height, 336);
     expect(tester.getSize(find.byType(HeroCoffeeCard)).width, 390);
     expect(find.text('Flat White'), findsOneWidget);
     expect(find.text('BeanGo Café'), findsOneWidget);
     expect(find.text('Ready in 4 min'), findsOneWidget);
     expect(find.byType(Image), findsOneWidget);
-    expect(tester.getSize(find.byType(FilledButton)).height, 64);
+    expect(tester.getSize(find.byType(FilledButton)).height, 60);
 
     await tester.tap(find.text('Order Again'));
     expect(orderCount, 1);
