@@ -89,7 +89,7 @@
   ,"demoOtpHint": "Demo code: 123456",
   "coffeeDetails": "Coffee details",
   "signatureFlatWhite": "Signature Flat White",
-  "demoCafeName": "BeanGo Roastery",
+  "demoCafeName": "Flat White",
   "coffeeDescription": "Velvety steamed milk over a balanced double espresso, crafted for a smooth finish.",
   "size": "Size",
   "regular": "Regular",
@@ -105,7 +105,7 @@
   "continueToCheckout": "Continue to checkout",
   "checkout": "Checkout",
   "pickup": "Pickup",
-  "pickupBody": "Ready at BeanGo Roastery in about 5 minutes",
+  "pickupBody": "Ready at Flat White in about 5 minutes",
   "payment": "Payment",
   "paymentBody": "Demo payment · No charge will be made",
   "placeOrder": "Place order · {price}",
@@ -130,5 +130,12 @@
   "aiPick": "Picked for you",
   "popularToday": "Popular today",
   "spanishLatte": "Spanish Latte",
-  "roasteryDistrict": "District Roastery"
+  "roasteryDistrict": "Earth Roastery",
+  "newArrivals": "New arrivals",
+  "matchaLatte": "Matcha Latte",
+  "pistachioLatte": "Pistachio Latte",
+  "saffronLatte": "Saffron Latte",
+  "cortado": "Cortado",
+  "v60": "V60",
+  "cappuccino": "Cappuccino"
 }

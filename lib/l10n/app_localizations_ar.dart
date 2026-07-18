@@ -262,7 +262,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signatureFlatWhite => 'فلات وايت سيجنتشر';
 
   @override
-  String get demoCafeName => 'محمصة BeanGo';
+  String get demoCafeName => 'Flat White';
 
   @override
   String get coffeeDescription =>
@@ -310,7 +310,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pickup => 'الاستلام';
 
   @override
-  String get pickupBody => 'جاهز في محمصة BeanGo خلال نحو 5 دقائق';
+  String get pickupBody => 'جاهز في Flat White خلال نحو 5 دقائق';
 
   @override
   String get payment => 'الدفع';
@@ -385,5 +385,26 @@ class AppLocalizationsAr extends AppLocalizations {
   String get spanishLatte => 'سبانش لاتيه';
 
   @override
-  String get roasteryDistrict => 'محمصة ديستريكت';
+  String get roasteryDistrict => 'Earth Roastery';
+
+  @override
+  String get newArrivals => 'وصل حديثًا';
+
+  @override
+  String get matchaLatte => 'ماتشا لاتيه';
+
+  @override
+  String get pistachioLatte => 'بيستاشيو لاتيه';
+
+  @override
+  String get saffronLatte => 'زعفران لاتيه';
+
+  @override
+  String get cortado => 'كورتادو';
+
+  @override
+  String get v60 => 'V60';
+
+  @override
+  String get cappuccino => 'كابتشينو';
 }
