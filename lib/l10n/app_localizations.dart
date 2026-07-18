@@ -709,6 +709,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove'**
   String get remove;
+
+  /// No description provided for @deliveryLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'West Bay, Doha'**
+  String get deliveryLocation;
+
+  /// No description provided for @searchCoffee.
+  ///
+  /// In en, this message translates to:
+  /// **'Search coffee or cafés'**
+  String get searchCoffee;
+
+  /// No description provided for @filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter;
+
+  /// No description provided for @promoTitleOne.
+  ///
+  /// In en, this message translates to:
+  /// **'A cooler way to coffee'**
+  String get promoTitleOne;
+
+  /// No description provided for @promoBodyOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Iced favorites made for your day.'**
+  String get promoBodyOne;
+
+  /// No description provided for @promoTitleTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee meets pastry'**
+  String get promoTitleTwo;
+
+  /// No description provided for @promoBodyTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Pair your cup with something freshly baked.'**
+  String get promoBodyTwo;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @hotCoffee.
+  ///
+  /// In en, this message translates to:
+  /// **'Hot coffee'**
+  String get hotCoffee;
+
+  /// No description provided for @coldCoffee.
+  ///
+  /// In en, this message translates to:
+  /// **'Cold coffee'**
+  String get coldCoffee;
+
+  /// No description provided for @pastries.
+  ///
+  /// In en, this message translates to:
+  /// **'Pastries'**
+  String get pastries;
+
+  /// No description provided for @beans.
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee beans'**
+  String get beans;
+
+  /// No description provided for @recommendedForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended for you'**
+  String get recommendedForYou;
+
+  /// No description provided for @aiPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Picked for you'**
+  String get aiPick;
+
+  /// No description provided for @popularToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular today'**
+  String get popularToday;
+
+  /// No description provided for @spanishLatte.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish Latte'**
+  String get spanishLatte;
+
+  /// No description provided for @roasteryDistrict.
+  ///
+  /// In en, this message translates to:
+  /// **'District Roastery'**
+  String get roasteryDistrict;
 }
 
 class _AppLocalizationsDelegate

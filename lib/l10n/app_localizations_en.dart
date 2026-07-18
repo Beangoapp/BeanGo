@@ -340,4 +340,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get remove => 'Remove';
+
+  @override
+  String get deliveryLocation => 'West Bay, Doha';
+
+  @override
+  String get searchCoffee => 'Search coffee or cafés';
+
+  @override
+  String get filter => 'Filter';
+
+  @override
+  String get promoTitleOne => 'A cooler way to coffee';
+
+  @override
+  String get promoBodyOne => 'Iced favorites made for your day.';
+
+  @override
+  String get promoTitleTwo => 'Coffee meets pastry';
+
+  @override
+  String get promoBodyTwo => 'Pair your cup with something freshly baked.';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get hotCoffee => 'Hot coffee';
+
+  @override
+  String get coldCoffee => 'Cold coffee';
+
+  @override
+  String get pastries => 'Pastries';
+
+  @override
+  String get beans => 'Coffee beans';
+
+  @override
+  String get recommendedForYou => 'Recommended for you';
+
+  @override
+  String get aiPick => 'Picked for you';
+
+  @override
+  String get popularToday => 'Popular today';
+
+  @override
+  String get spanishLatte => 'Spanish Latte';
+
+  @override
+  String get roasteryDistrict => 'District Roastery';
 }

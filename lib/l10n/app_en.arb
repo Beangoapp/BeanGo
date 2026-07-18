@@ -113,5 +113,22 @@
   "orderConfirmed": "Order confirmed",
   "orderSuccessBody": "Your coffee is being prepared and will be ready in about 5 minutes.",
   "backToHome": "Back to home",
-  "remove": "Remove"
+  "remove": "Remove",
+  "deliveryLocation": "West Bay, Doha",
+  "searchCoffee": "Search coffee or cafés",
+  "filter": "Filter",
+  "promoTitleOne": "A cooler way to coffee",
+  "promoBodyOne": "Iced favorites made for your day.",
+  "promoTitleTwo": "Coffee meets pastry",
+  "promoBodyTwo": "Pair your cup with something freshly baked.",
+  "categories": "Categories",
+  "hotCoffee": "Hot coffee",
+  "coldCoffee": "Cold coffee",
+  "pastries": "Pastries",
+  "beans": "Coffee beans",
+  "recommendedForYou": "Recommended for you",
+  "aiPick": "Picked for you",
+  "popularToday": "Popular today",
+  "spanishLatte": "Spanish Latte",
+  "roasteryDistrict": "District Roastery"
 }

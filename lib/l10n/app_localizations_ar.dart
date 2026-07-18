@@ -335,4 +335,55 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get remove => 'إزالة';
+
+  @override
+  String get deliveryLocation => 'الخليج الغربي، الدوحة';
+
+  @override
+  String get searchCoffee => 'ابحث عن قهوة أو مقهى';
+
+  @override
+  String get filter => 'تصفية';
+
+  @override
+  String get promoTitleOne => 'قهوة أبرد ليوم أجمل';
+
+  @override
+  String get promoBodyOne => 'خيارات مثلجة تناسب يومك.';
+
+  @override
+  String get promoTitleTwo => 'قهوة مع مخبوزات';
+
+  @override
+  String get promoBodyTwo => 'نسّق كوبك مع مخبوزات طازجة.';
+
+  @override
+  String get categories => 'التصنيفات';
+
+  @override
+  String get hotCoffee => 'قهوة ساخنة';
+
+  @override
+  String get coldCoffee => 'قهوة باردة';
+
+  @override
+  String get pastries => 'مخبوزات';
+
+  @override
+  String get beans => 'حبوب القهوة';
+
+  @override
+  String get recommendedForYou => 'مقترح لك';
+
+  @override
+  String get aiPick => 'اختيار يناسبك';
+
+  @override
+  String get popularToday => 'الأكثر طلبًا اليوم';
+
+  @override
+  String get spanishLatte => 'سبانش لاتيه';
+
+  @override
+  String get roasteryDistrict => 'محمصة ديستريكت';
 }

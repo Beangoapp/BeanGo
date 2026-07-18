@@ -113,5 +113,22 @@
   "orderConfirmed": "تم تأكيد الطلب",
   "orderSuccessBody": "يتم الآن تحضير قهوتك وستكون جاهزة خلال نحو 5 دقائق.",
   "backToHome": "العودة للرئيسية",
-  "remove": "إزالة"
+  "remove": "إزالة",
+  "deliveryLocation": "الخليج الغربي، الدوحة",
+  "searchCoffee": "ابحث عن قهوة أو مقهى",
+  "filter": "تصفية",
+  "promoTitleOne": "قهوة أبرد ليوم أجمل",
+  "promoBodyOne": "خيارات مثلجة تناسب يومك.",
+  "promoTitleTwo": "قهوة مع مخبوزات",
+  "promoBodyTwo": "نسّق كوبك مع مخبوزات طازجة.",
+  "categories": "التصنيفات",
+  "hotCoffee": "قهوة ساخنة",
+  "coldCoffee": "قهوة باردة",
+  "pastries": "مخبوزات",
+  "beans": "حبوب القهوة",
+  "recommendedForYou": "مقترح لك",
+  "aiPick": "اختيار يناسبك",
+  "popularToday": "الأكثر طلبًا اليوم",
+  "spanishLatte": "سبانش لاتيه",
+  "roasteryDistrict": "محمصة ديستريكت"
 }
