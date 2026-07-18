@@ -36,6 +36,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final recommendations = ref.watch(homeRecommendationsProvider(request));
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         bottom: false,
         child: recommendations.when(
@@ -48,9 +49,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             slivers: [
               SliverPadding(
                 padding: const EdgeInsetsDirectional.fromSTEB(
-                  AppSpacing.md,
+                  AppSpacing.lg,
                   AppSpacing.sm,
-                  AppSpacing.md,
+                  AppSpacing.lg,
                   AppSpacing.xxl,
                 ),
                 sliver: SliverList.list(
@@ -61,12 +62,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         now: request.now,
                       ),
                     ),
-                    const SizedBox(height: AppSpacing.md),
+                    const SizedBox(height: AppSpacing.sm),
                     const _HomeEntrance(
                       delay: Duration(milliseconds: 50),
                       child: _SearchField(),
                     ),
-                    const SizedBox(height: AppSpacing.md),
+                    const SizedBox(height: AppSpacing.sm),
                     _HomeEntrance(
                       delay: const Duration(milliseconds: 100),
                       child: _PromotionCarousel(
@@ -76,27 +77,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             setState(() => _promoIndex = index),
                       ),
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: AppSpacing.xl),
                     _HomeEntrance(
                       delay: const Duration(milliseconds: 150),
                       child: const _OrderAgainSection(),
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: AppSpacing.xl),
                     const _HomeEntrance(
                       delay: Duration(milliseconds: 200),
                       child: _CategoriesSection(),
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: AppSpacing.xl),
                     _HomeEntrance(
                       delay: const Duration(milliseconds: 250),
                       child: _RecommendedSection(bundle: bundle),
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: AppSpacing.xl),
                     _HomeEntrance(
                       delay: const Duration(milliseconds: 300),
                       child: _NearbySection(cafes: bundle.nearbyCafes),
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: AppSpacing.xl),
                     const _HomeEntrance(
                       delay: Duration(milliseconds: 350),
                       child: _PopularSection(),
@@ -134,18 +135,6 @@ class _CompactHeader extends StatelessWidget {
 
     return Row(
       children: [
-        CircleAvatar(
-          radius: 23,
-          backgroundColor: colors.primaryContainer,
-          child: Text(
-            displayName.characters.first.toUpperCase(),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: colors.onPrimaryContainer,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-        ),
-        const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -182,10 +171,25 @@ class _CompactHeader extends StatelessWidget {
             ],
           ),
         ),
-        IconButton.filledTonal(
+        IconButton(
           onPressed: () {},
           tooltip: l10n.notifications,
-          icon: const Icon(AppIcons.notifications, size: 21),
+          style: IconButton.styleFrom(
+            backgroundColor: colors.surfaceContainerHigh,
+          ),
+          icon: const Icon(AppIcons.notifications, size: 20),
+        ),
+        const SizedBox(width: AppSpacing.xs),
+        CircleAvatar(
+          radius: 21,
+          backgroundColor: colors.primaryContainer,
+          child: Text(
+            displayName.characters.first.toUpperCase(),
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              color: colors.onPrimaryContainer,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
         ),
       ],
     );
@@ -267,7 +271,7 @@ class _PromotionCarousel extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 174,
+          height: 184,
           child: PageView.builder(
             controller: controller,
             itemCount: promotions.length,
@@ -328,6 +332,13 @@ class _PromoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: colors.primaryContainer,
         borderRadius: BorderRadius.circular(AppRadius.hero),
+        boxShadow: [
+          BoxShadow(
+            color: colors.shadow.withValues(alpha: .08),
+            blurRadius: 24,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
       child: Row(
         children: [
@@ -363,7 +374,7 @@ class _PromoCard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 142,
+            width: 148,
             height: double.infinity,
             child: Image.asset(imageAsset, fit: BoxFit.cover),
           ),
@@ -385,7 +396,7 @@ class _OrderAgainSection extends StatelessWidget {
         _SectionHeader(title: l10n.orderAgain),
         const SizedBox(height: AppSpacing.sm),
         SizedBox(
-          height: 178,
+          height: 196,
           child: ListView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
@@ -429,22 +440,14 @@ class _CategoriesSection extends StatelessWidget {
         _SectionHeader(title: l10n.categories),
         const SizedBox(height: AppSpacing.sm),
         SizedBox(
-          height: 46,
+          height: 86,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
             separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.xs),
             itemBuilder: (context, index) {
               final category = categories[index];
-              return ActionChip(
-                onPressed: () {},
-                avatar: Icon(category.$2, size: 18),
-                label: Text(category.$1),
-                shape: const StadiumBorder(),
-                side: BorderSide(
-                  color: Theme.of(context).colorScheme.outlineVariant,
-                ),
-              );
+              return _CategoryItem(label: category.$1, icon: category.$2);
             },
           ),
         ),
@@ -538,7 +541,7 @@ class _PopularSection extends StatelessWidget {
         _SectionHeader(title: l10n.popularToday),
         const SizedBox(height: AppSpacing.sm),
         SizedBox(
-          height: 178,
+          height: 196,
           child: ListView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
@@ -579,6 +582,52 @@ class _SectionHeader extends StatelessWidget {
   );
 }
 
+class _CategoryItem extends StatelessWidget {
+  const _CategoryItem({required this.label, required this.icon});
+
+  final String label;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Semantics(
+      button: true,
+      label: label,
+      child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(AppRadius.input),
+        child: SizedBox(
+          width: 72,
+          child: Column(
+            children: [
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: colors.surfaceContainerHigh,
+                  borderRadius: BorderRadius.circular(AppRadius.input),
+                ),
+                child: Icon(icon, color: colors.primary, size: 24),
+              ),
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _CoffeeTile extends StatelessWidget {
   const _CoffeeTile({
     required this.name,
@@ -594,7 +643,7 @@ class _CoffeeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-    width: 150,
+    width: 164,
     child: AppCard(
       onTap: onTap,
       padding: EdgeInsets.zero,
@@ -785,37 +834,46 @@ class _ModernNavigation extends StatelessWidget {
       top: false,
       child: Material(
         color: colors.surface,
-        elevation: 10,
+        elevation: 0,
         shadowColor: colors.shadow.withValues(alpha: .12),
-        child: NavigationBar(
-          height: 68,
-          backgroundColor: Colors.transparent,
-          indicatorColor: colors.primaryContainer,
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          selectedIndex: 0,
-          onDestinationSelected: (_) {},
-          destinations: [
-            NavigationDestination(
-              icon: const Icon(AppIcons.home),
-              label: l10n.home,
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: colors.outlineVariant.withValues(alpha: .55),
+              ),
             ),
-            NavigationDestination(
-              icon: const Icon(AppIcons.explore),
-              label: l10n.explore,
-            ),
-            NavigationDestination(
-              icon: const Icon(AppIcons.orders),
-              label: l10n.orders,
-            ),
-            NavigationDestination(
-              icon: const Icon(AppIcons.rewards),
-              label: l10n.rewards,
-            ),
-            NavigationDestination(
-              icon: const Icon(AppIcons.profile),
-              label: l10n.profile,
-            ),
-          ],
+          ),
+          child: NavigationBar(
+            height: 70,
+            backgroundColor: Colors.transparent,
+            indicatorColor: colors.primaryContainer,
+            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+            selectedIndex: 0,
+            onDestinationSelected: (_) {},
+            destinations: [
+              NavigationDestination(
+                icon: const Icon(AppIcons.home),
+                label: l10n.home,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.explore),
+                label: l10n.explore,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.orders),
+                label: l10n.orders,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.rewards),
+                label: l10n.rewards,
+              ),
+              NavigationDestination(
+                icon: const Icon(AppIcons.profile),
+                label: l10n.profile,
+              ),
+            ],
+          ),
         ),
       ),
     );
