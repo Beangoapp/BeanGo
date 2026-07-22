@@ -285,10 +285,13 @@ class _CategoryHeaderDelegate extends SliverPersistentHeaderDelegate {
     BuildContext context,
     double shrinkOffset,
     bool overlapsContent,
-  ) => Material(
-    color: Theme.of(context).colorScheme.surface,
-    elevation: overlapsContent ? 2 : 0,
-    child: child,
+  ) => SizedBox(
+    height: height,
+    child: Material(
+      color: Theme.of(context).colorScheme.surface,
+      elevation: overlapsContent ? 2 : 0,
+      child: child,
+    ),
   );
   @override
   bool shouldRebuild(_CategoryHeaderDelegate oldDelegate) =>
