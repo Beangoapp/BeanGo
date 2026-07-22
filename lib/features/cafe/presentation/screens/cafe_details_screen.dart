@@ -364,23 +364,26 @@ class _CafeFooter extends StatelessWidget {
           onProduct: onProduct,
         ),
         const SizedBox(height: AppSpacing.xl),
-        Row(
+        Text(
+          strings.customerReviews,
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900),
+        ),
+        const SizedBox(height: AppSpacing.sm),
+        Wrap(
+          spacing: AppSpacing.xs,
+          runSpacing: AppSpacing.xs,
           children: [
-            Expanded(
-              child: Text(
-                strings.customerReviews,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900),
-              ),
+            ChoiceChip(
+              label: Text(strings.newest),
+              selected: !highestFirst,
+              onSelected: (_) => onSort(false),
             ),
-            SegmentedButton<bool>(
-              segments: [
-                ButtonSegment(value: false, label: Text(strings.newest)),
-                ButtonSegment(value: true, label: Text(strings.highestRated)),
-              ],
-              selected: {highestFirst},
-              onSelectionChanged: (value) => onSort(value.first),
+            ChoiceChip(
+              label: Text(strings.highestRated),
+              selected: highestFirst,
+              onSelected: (_) => onSort(true),
             ),
           ],
         ),

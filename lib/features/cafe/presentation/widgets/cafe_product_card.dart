@@ -36,86 +36,98 @@ class CafeProductCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.sm),
-            child: Row(
+            padding: const EdgeInsetsDirectional.all(AppSpacing.sm),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Hero(
-                  tag: heroTag,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(AppRadius.input),
-                    child: Image.asset(
-                      product.imageAsset,
-                      width: 112,
-                      height: 112,
-                      fit: BoxFit.cover,
-                      cacheWidth: 336,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: AppSpacing.md),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Wrap(
-                        spacing: 6,
-                        runSpacing: 4,
-                        children: [
-                          if (product.badges.contains(ProductBadge.bestseller))
-                            _Badge(strings.bestseller),
-                          if (product.badges.contains(ProductBadge.newArrival))
-                            _Badge(strings.newArrival),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.w800),
-                      ),
-                      Text(
-                        product.localizedDescription(strings.ar),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: colors.onSurfaceVariant,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Hero(
+                      tag: heroTag,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(AppRadius.input),
+                        child: Image.asset(
+                          product.imageAsset,
+                          width: 104,
+                          height: 104,
+                          fit: BoxFit.cover,
+                          cacheWidth: 312,
                         ),
                       ),
-                      const Spacer(),
-                      Row(
+                    ),
+                    const SizedBox(width: AppSpacing.md),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              strings.qar(product.price),
-                              style: Theme.of(context).textTheme.titleSmall
-                                  ?.copyWith(fontWeight: FontWeight.w800),
-                            ),
+                          Wrap(
+                            spacing: 6,
+                            runSpacing: 4,
+                            children: [
+                              if (product.badges.contains(
+                                ProductBadge.bestseller,
+                              ))
+                                _Badge(strings.bestseller),
+                              if (product.badges.contains(
+                                ProductBadge.newArrival,
+                              ))
+                                _Badge(strings.newArrival),
+                            ],
                           ),
-                          IconButton(
-                            onPressed: onFavorite,
-                            tooltip: isFavorite ? 'Unfavorite' : 'Favorite',
-                            icon: Icon(
-                              isFavorite
-                                  ? Icons.favorite_rounded
-                                  : Icons.favorite_border_rounded,
-                              color: isFavorite ? colors.error : null,
-                            ),
+                          const SizedBox(height: 4),
+                          Text(
+                            name,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.w800),
                           ),
-                          FilledButton.tonal(
-                            onPressed: product.available ? onQuickAdd : null,
-                            child: Text(
-                              product.available
-                                  ? strings.add
-                                  : strings.unavailable,
-                            ),
+                          const SizedBox(height: 2),
+                          Text(
+                            product.localizedDescription(strings.ar),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: colors.onSurfaceVariant),
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        strings.qar(product.price),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: onFavorite,
+                      tooltip: isFavorite ? 'Unfavorite' : 'Favorite',
+                      icon: Icon(
+                        isFavorite
+                            ? Icons.favorite_rounded
+                            : Icons.favorite_border_rounded,
+                        color: isFavorite ? colors.error : null,
+                      ),
+                    ),
+                    Flexible(
+                      child: FilledButton.tonal(
+                        onPressed: product.available ? onQuickAdd : null,
+                        child: Text(
+                          product.available ? strings.add : strings.unavailable,
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

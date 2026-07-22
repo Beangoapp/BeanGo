@@ -121,16 +121,15 @@ class _ProductExperienceState extends ConsumerState<_ProductExperience> {
             ),
             sliver: SliverList.list(
               children: [
-                Row(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Text(
-                        product.localizedName(strings.ar),
-                        style: Theme.of(context).textTheme.headlineMedium
-                            ?.copyWith(fontWeight: FontWeight.w900),
-                      ),
+                    Text(
+                      product.localizedName(strings.ar),
+                      style: Theme.of(context).textTheme.headlineMedium
+                          ?.copyWith(fontWeight: FontWeight.w900),
                     ),
+                    const SizedBox(height: AppSpacing.xs),
                     Text(
                       strings.qar(product.price),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -185,13 +184,13 @@ class _ProductExperienceState extends ConsumerState<_ProductExperience> {
                 const SizedBox(height: AppSpacing.md),
                 Row(
                   children: [
-                    Text(
-                      strings.quantity,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w800,
+                    Expanded(
+                      child: Text(
+                        strings.quantity,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w800),
                       ),
                     ),
-                    const Spacer(),
                     IconButton.outlined(
                       onPressed: customization.quantity > 1
                           ? () => controller.setQuantity(

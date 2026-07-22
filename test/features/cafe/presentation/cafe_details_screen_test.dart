@@ -33,6 +33,7 @@ void main() {
   ) async {
     await tester.pumpWidget(app());
     await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
     expect(find.byKey(const ValueKey('cafe-details-screen')), findsOneWidget);
     expect(find.text('Flat White'), findsWidgets);
     expect(find.byKey(const ValueKey('cafe-category-tabs')), findsOneWidget);
@@ -43,10 +44,15 @@ void main() {
   });
 
   testWidgets('supports Arabic RTL and dark mode', (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(390, 844);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
     tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
     addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
     await tester.pumpWidget(app(locale: const Locale('ar')));
     await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
     final screen = find.byKey(const ValueKey('cafe-details-screen'));
     expect(Directionality.of(tester.element(screen)), TextDirection.rtl);
     expect(Theme.of(tester.element(screen)).brightness, Brightness.dark);
