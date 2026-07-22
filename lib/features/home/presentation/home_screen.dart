@@ -8,6 +8,7 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../order_demo/presentation/coffee_details_screen.dart';
+import '../../cafe/presentation/screens/cafe_details_screen.dart';
 import '../application/home_providers.dart';
 import '../domain/entities/home_content.dart';
 import 'widgets/home_cards.dart';
@@ -260,9 +261,19 @@ class _HomeContent extends ConsumerWidget {
                   _NearbySection(
                     cafes: content.nearbyCafes,
                     onFavorite: onFavorite,
+                    onOpen: (cafe, tag) => context.push(
+                      AppRoutes.cafe(cafe.id),
+                      extra: CafeRouteArgs(heroTag: tag),
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.xl),
-                  _FeaturedSection(cafes: content.featuredCafes),
+                  _FeaturedSection(
+                    cafes: content.featuredCafes,
+                    onOpen: (cafe, tag) => context.push(
+                      AppRoutes.cafe(cafe.id),
+                      extra: CafeRouteArgs(heroTag: tag),
+                    ),
+                  ),
                   const SizedBox(height: AppSpacing.xl),
                   _ProductSection(
                     key: const ValueKey('home-section-trending'),
@@ -410,10 +421,15 @@ class _CategoryChip extends StatelessWidget {
 }
 
 class _NearbySection extends StatelessWidget {
-  const _NearbySection({required this.cafes, required this.onFavorite});
+  const _NearbySection({
+    required this.cafes,
+    required this.onFavorite,
+    required this.onOpen,
+  });
 
   final List<HomeCafe> cafes;
   final ValueChanged<HomeCafe> onFavorite;
+  final void Function(HomeCafe, String) onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -430,8 +446,9 @@ class _NearbySection extends StatelessWidget {
         for (final cafe in cafes) ...[
           NearbyCafeCard(
             cafe: cafe,
+            heroTag: 'home-cafe-${cafe.id}',
             onFavorite: () => onFavorite(cafe),
-            onTap: () {},
+            onTap: () => onOpen(cafe, 'home-cafe-${cafe.id}'),
           ),
           const SizedBox(height: AppSpacing.sm),
         ],
@@ -441,9 +458,10 @@ class _NearbySection extends StatelessWidget {
 }
 
 class _FeaturedSection extends StatelessWidget {
-  const _FeaturedSection({required this.cafes});
+  const _FeaturedSection({required this.cafes, required this.onOpen});
 
   final List<HomeCafe> cafes;
+  final void Function(HomeCafe, String) onOpen;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -460,8 +478,15 @@ class _FeaturedSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: cafes.length,
           separatorBuilder: (_, _) => const SizedBox(width: AppSpacing.sm),
-          itemBuilder: (context, index) =>
-              FeaturedCafeCard(cafe: cafes[index], onTap: () {}),
+          itemBuilder: (context, index) {
+            final cafe = cafes[index];
+            final tag = 'home-featured-cafe-${cafe.id}';
+            return FeaturedCafeCard(
+              cafe: cafe,
+              heroTag: tag,
+              onTap: () => onOpen(cafe, tag),
+            );
+          },
         ),
       ),
     ],

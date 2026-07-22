@@ -10,6 +10,8 @@ import '../../features/authentication/presentation/screens/mobile_login_screen.d
 import '../../features/authentication/presentation/screens/onboarding_screen.dart';
 import '../../features/authentication/presentation/screens/otp_verification_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
+import '../../features/cafe/presentation/screens/cafe_details_screen.dart';
+import '../../features/cafe/presentation/screens/product_details_screen.dart';
 import '../../features/order_demo/presentation/cart_screen.dart';
 import '../../features/order_demo/presentation/checkout_screen.dart';
 import '../../features/order_demo/presentation/coffee_details_screen.dart';
@@ -33,6 +35,10 @@ abstract final class AppRoutes {
   static const cart = '/cart';
   static const checkout = '/checkout';
   static const orderSuccess = '/order-success';
+  static const cafeDetails = '/cafes/:cafeId';
+  static const productDetails = '/products/:productId';
+  static String cafe(String id) => '/cafes/$id';
+  static String product(String id) => '/products/$id';
 }
 
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -88,6 +94,30 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.home,
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.cafeDetails,
+        builder: (context, state) {
+          final args = state.extra is CafeRouteArgs
+              ? state.extra! as CafeRouteArgs
+              : null;
+          return CafeDetailsScreen(
+            cafeId: state.pathParameters['cafeId']!,
+            heroTag: args?.heroTag,
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.productDetails,
+        builder: (context, state) {
+          final args = state.extra is ProductRouteArgs
+              ? state.extra! as ProductRouteArgs
+              : null;
+          return ProductDetailsScreen(
+            productId: state.pathParameters['productId']!,
+            heroTag: args?.heroTag,
+          );
+        },
       ),
       GoRoute(
         path: AppRoutes.coffeeDetails,

@@ -149,11 +149,13 @@ class NearbyCafeCard extends StatelessWidget {
     required this.onFavorite,
     required this.onTap,
     super.key,
+    this.heroTag,
   });
 
   final HomeCafe cafe;
   final VoidCallback onFavorite;
   final VoidCallback onTap;
+  final String? heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -183,10 +185,13 @@ class NearbyCafeCard extends StatelessWidget {
                 SizedBox(
                   width: 132,
                   height: double.infinity,
-                  child: Image.asset(
-                    cafe.imageAsset,
-                    fit: BoxFit.cover,
-                    cacheWidth: 360,
+                  child: _OptionalHero(
+                    tag: heroTag,
+                    child: Image.asset(
+                      cafe.imageAsset,
+                      fit: BoxFit.cover,
+                      cacheWidth: 360,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -270,10 +275,16 @@ class NearbyCafeCard extends StatelessWidget {
 }
 
 class FeaturedCafeCard extends StatelessWidget {
-  const FeaturedCafeCard({required this.cafe, required this.onTap, super.key});
+  const FeaturedCafeCard({
+    required this.cafe,
+    required this.onTap,
+    super.key,
+    this.heroTag,
+  });
 
   final HomeCafe cafe;
   final VoidCallback onTap;
+  final String? heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -292,7 +303,14 @@ class FeaturedCafeCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.asset(cafe.imageAsset, fit: BoxFit.cover, cacheWidth: 700),
+              _OptionalHero(
+                tag: heroTag,
+                child: Image.asset(
+                  cafe.imageAsset,
+                  fit: BoxFit.cover,
+                  cacheWidth: 700,
+                ),
+              ),
               const DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -343,6 +361,15 @@ class FeaturedCafeCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class _OptionalHero extends StatelessWidget {
+  const _OptionalHero({required this.tag, required this.child});
+  final String? tag;
+  final Widget child;
+  @override
+  Widget build(BuildContext context) =>
+      tag == null ? child : Hero(tag: tag!, child: child);
 }
 
 class _CafeLogo extends StatelessWidget {
