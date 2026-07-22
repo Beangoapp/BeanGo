@@ -10,8 +10,10 @@ class AppTextField extends StatelessWidget {
     this.hint,
     this.keyboardType,
     this.textInputAction,
+    this.textDirection,
     this.autofillHints,
     this.validator,
+    this.autovalidateMode,
     this.obscureText = false,
     this.prefixIcon,
     this.suffixIcon,
@@ -26,8 +28,10 @@ class AppTextField extends StatelessWidget {
   final String? hint;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
+  final TextDirection? textDirection;
   final Iterable<String>? autofillHints;
   final FormFieldValidator<String>? validator;
+  final AutovalidateMode? autovalidateMode;
   final bool obscureText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -42,8 +46,10 @@ class AppTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
+      textDirection: textDirection,
       autofillHints: autofillHints,
       validator: validator,
+      autovalidateMode: autovalidateMode,
       obscureText: obscureText,
       enabled: enabled,
       maxLines: obscureText ? 1 : maxLines,

@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../../../core/localization/locale_controller.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/router/app_router.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_tokens.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_brand.dart';
@@ -51,7 +50,7 @@ class _LanguageSelectionScreenState
       ),
       body: SafeArea(
         top: false,
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.lg),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,7 +58,7 @@ class _LanguageSelectionScreenState
               Text(
                 l10n.chooseLanguage,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  color: AppColors.espresso,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.w700,
                   letterSpacing: -.8,
                 ),
@@ -68,7 +67,7 @@ class _LanguageSelectionScreenState
               Text(
                 l10n.chooseLanguageBody,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.espresso.withValues(alpha: .65),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   height: 1.45,
                 ),
               ),
@@ -88,7 +87,7 @@ class _LanguageSelectionScreenState
                 selected: _selectedLanguage == 'ar',
                 onTap: () => setState(() => _selectedLanguage = 'ar'),
               ),
-              const Spacer(),
+              const SizedBox(height: AppSpacing.xxl),
               AppPrimaryButton(
                 label: l10n.continueLabel,
                 icon: _selectedLanguage == 'ar'
@@ -126,10 +125,14 @@ class _LanguageOption extends StatelessWidget {
       button: true,
       label: title,
       child: Material(
-        color: selected ? AppColors.latte : AppColors.milk,
+        color: selected
+            ? Theme.of(context).colorScheme.primaryContainer
+            : Theme.of(context).colorScheme.surface,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: selected ? AppColors.caramel : AppColors.latte,
+            color: selected
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.outlineVariant,
             width: selected ? 1.8 : 1,
           ),
           borderRadius: BorderRadius.circular(AppRadius.card),
@@ -147,13 +150,13 @@ class _LanguageOption extends StatelessWidget {
                   height: 48,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: AppColors.espresso,
+                    color: Theme.of(context).colorScheme.primary,
                     borderRadius: BorderRadius.circular(AppRadius.input),
                   ),
                   child: Text(
                     languageCode.toUpperCase(),
-                    style: const TextStyle(
-                      color: AppColors.warmWhite,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                     ),
@@ -166,8 +169,8 @@ class _LanguageOption extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(
-                          color: AppColors.espresso,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 17,
                           fontWeight: FontWeight.w700,
                         ),
@@ -175,8 +178,8 @@ class _LanguageOption extends StatelessWidget {
                       const SizedBox(height: 3),
                       Text(
                         subtitle,
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                           fontSize: 13,
                         ),
                       ),
@@ -189,20 +192,20 @@ class _LanguageOption extends StatelessWidget {
                   height: 24,
                   decoration: BoxDecoration(
                     color: selected
-                        ? AppColors.espresso
-                        : AppColors.transparent,
+                        ? Theme.of(context).colorScheme.primary
+                        : Colors.transparent,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: selected
-                          ? AppColors.espresso
-                          : AppColors.textSecondary,
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.outline,
                     ),
                   ),
                   child: selected
-                      ? const Icon(
+                      ? Icon(
                           Icons.check_rounded,
                           size: 16,
-                          color: AppColors.warmWhite,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         )
                       : null,
                 ),

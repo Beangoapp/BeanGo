@@ -24,6 +24,7 @@ class MobileLoginScreen extends ConsumerStatefulWidget {
 class _MobileLoginScreenState extends ConsumerState<MobileLoginScreen> {
   final _phoneController = TextEditingController();
   var _valid = false;
+  var _hasInteracted = false;
 
   @override
   void dispose() {
@@ -63,11 +64,21 @@ class _MobileLoginScreenState extends ConsumerState<MobileLoginScreen> {
             hint: l10n.qatarMobileHint,
             keyboardType: TextInputType.phone,
             textInputAction: TextInputAction.done,
+            textDirection: TextDirection.ltr,
             autofillHints: const [AutofillHints.telephoneNumberNational],
             prefixIcon: const _QatarPrefix(),
-            onChanged: (value) => setState(
-              () => _valid = AuthValidators.isValidQatarPhone(value),
-            ),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (!_hasInteracted) return null;
+              if (value?.isEmpty ?? true) return l10n.phoneRequired;
+              return AuthValidators.isValidQatarPhone(value!)
+                  ? null
+                  : l10n.phoneInvalid;
+            },
+            onChanged: (value) => setState(() {
+              _hasInteracted = true;
+              _valid = AuthValidators.isValidQatarPhone(value);
+            }),
             onFieldSubmitted: (_) => _valid ? _requestOtp() : null,
           ),
           if (auth.error != null) ...[

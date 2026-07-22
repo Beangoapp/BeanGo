@@ -104,10 +104,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 label: last ? l10n.getStarted : l10n.continueLabel,
                 onPressed: last
                     ? _finish
-                    : () => _controller.nextPage(
-                        duration: AppMotion.emphasized,
-                        curve: AppMotion.transitionCurve,
-                      ),
+                    : () {
+                        if (MediaQuery.disableAnimationsOf(context)) {
+                          _controller.jumpToPage(_index + 1);
+                        } else {
+                          _controller.nextPage(
+                            duration: AppMotion.emphasized,
+                            curve: AppMotion.transitionCurve,
+                          );
+                        }
+                      },
               ),
             ],
           ),
@@ -129,37 +135,40 @@ class _OnboardingPage extends StatelessWidget {
   final String image;
 
   @override
-  Widget build(BuildContext context) => Column(
-    children: [
-      Expanded(
-        child: Container(
-          width: double.infinity,
-          margin: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppRadius.hero),
-            color: Theme.of(context).colorScheme.surfaceContainer,
+  Widget build(BuildContext context) => SingleChildScrollView(
+    child: Column(
+      children: [
+        AspectRatio(
+          aspectRatio: 1.1,
+          child: Container(
+            width: double.infinity,
+            margin: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppRadius.hero),
+              color: Theme.of(context).colorScheme.surfaceContainer,
+            ),
+            child: Image.asset(image, fit: BoxFit.cover),
           ),
-          child: Image.asset(image, fit: BoxFit.cover),
         ),
-      ),
-      Text(
-        title,
-        textAlign: TextAlign.center,
-        style: Theme.of(
-          context,
-        ).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w800),
-      ),
-      const SizedBox(height: AppSpacing.sm),
-      Text(
-        body,
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-          height: 1.45,
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(
+            context,
+          ).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w800),
         ),
-      ),
-      const SizedBox(height: AppSpacing.lg),
-    ],
+        const SizedBox(height: AppSpacing.sm),
+        Text(
+          body,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+            height: 1.45,
+          ),
+        ),
+        const SizedBox(height: AppSpacing.lg),
+      ],
+    ),
   );
 }

@@ -90,13 +90,15 @@ class AppButton extends StatelessWidget {
       ),
     };
 
-    return Semantics(
-      button: true,
-      label: semanticLabel,
-      child: SizedBox(
-        width: expand ? double.infinity : null,
-        height: height,
-        child: action,
+    return SizedBox(
+      width: expand ? double.infinity : null,
+      child: Semantics(
+        button: true,
+        label: semanticLabel,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: height),
+          child: action,
+        ),
       ),
     );
   }

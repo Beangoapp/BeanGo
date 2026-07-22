@@ -40,32 +40,41 @@ class _AuthWelcomeScreenState extends State<AuthWelcomeScreen>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (MediaQuery.disableAnimationsOf(context)) _controller.value = 1;
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.lg),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: AppBrand(compact: true),
               ),
-              const Spacer(),
-              ScaleTransition(
-                scale: _animation,
-                child: Container(
-                  width: 104,
-                  height: 104,
-                  decoration: const BoxDecoration(
-                    color: AppColors.success,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.check_rounded,
-                    size: 54,
-                    color: Colors.white,
+              const SizedBox(height: AppSpacing.xxl),
+              Align(
+                child: ScaleTransition(
+                  scale: _animation,
+                  child: Container(
+                    width: 104,
+                    height: 104,
+                    decoration: const BoxDecoration(
+                      color: AppColors.success,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.check_rounded,
+                      size: 54,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -85,7 +94,7 @@ class _AuthWelcomeScreenState extends State<AuthWelcomeScreen>
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: AppSpacing.xxl),
               AppButton(
                 label: l10n.startExploring,
                 onPressed: () => context.go(AppRoutes.home),

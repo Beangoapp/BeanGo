@@ -10,14 +10,12 @@ class AuthPageScaffold extends StatelessWidget {
     required this.child,
     super.key,
     this.showBrand = true,
-    this.bottom,
   });
 
   final String title;
   final String body;
   final Widget child;
   final bool showBrand;
-  final Widget? bottom;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -35,41 +33,34 @@ class AuthPageScaffold extends StatelessWidget {
           ),
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: IntrinsicHeight(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  if (showBrand) ...[
-                    const Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: AppBrand(compact: true),
-                    ),
-                    const SizedBox(height: AppSpacing.xl),
-                  ],
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: -.7,
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-                  Text(
-                    body,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      height: 1.45,
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (showBrand) ...[
+                  const Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: AppBrand(compact: true),
                   ),
                   const SizedBox(height: AppSpacing.xl),
-                  child,
-                  if (bottom != null) ...[
-                    const Spacer(),
-                    const SizedBox(height: AppSpacing.xl),
-                    bottom!,
-                  ],
                 ],
-              ),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -.7,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Text(
+                  body,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    height: 1.45,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.xl),
+                child,
+              ],
             ),
           ),
         ),

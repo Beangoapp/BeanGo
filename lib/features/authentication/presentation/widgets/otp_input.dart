@@ -7,12 +7,14 @@ class OtpInput extends StatefulWidget {
   const OtpInput({
     required this.onChanged,
     required this.onCompleted,
+    required this.digitSemanticLabel,
     super.key,
     this.enabled = true,
   });
 
   final ValueChanged<String> onChanged;
   final ValueChanged<String> onCompleted;
+  final String Function(int position) digitSemanticLabel;
   final bool enabled;
 
   @override
@@ -31,9 +33,9 @@ class OtpInputState extends State<OtpInput> {
     super.initState();
     _controllers = List.generate(length, (_) => TextEditingController());
     _focusNodes = List.generate(length, (_) => FocusNode());
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => _focusNodes.first.requestFocus(),
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _focusNodes.first.requestFocus();
+    });
   }
 
   void clear() {
@@ -89,26 +91,30 @@ class OtpInputState extends State<OtpInput> {
             padding: EdgeInsetsDirectional.only(
               end: index == length - 1 ? 0 : AppSpacing.xs,
             ),
-            child: TextField(
-              controller: _controllers[index],
-              focusNode: _focusNodes[index],
-              enabled: widget.enabled,
-              autofocus: index == 0,
-              autofillHints: index == 0
-                  ? const [AutofillHints.oneTimeCode]
-                  : null,
-              keyboardType: TextInputType.number,
-              textInputAction: index == length - 1
-                  ? TextInputAction.done
-                  : TextInputAction.next,
-              textAlign: TextAlign.center,
-              maxLength: index == 0 ? length : 1,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
-              decoration: const InputDecoration(counterText: ''),
-              onChanged: (value) => _handleChange(index, value),
+            child: Semantics(
+              label: widget.digitSemanticLabel(index + 1),
+              textField: true,
+              child: TextField(
+                controller: _controllers[index],
+                focusNode: _focusNodes[index],
+                enabled: widget.enabled,
+                autofocus: index == 0,
+                autofillHints: index == 0
+                    ? const [AutofillHints.oneTimeCode]
+                    : null,
+                keyboardType: TextInputType.number,
+                textInputAction: index == length - 1
+                    ? TextInputAction.done
+                    : TextInputAction.next,
+                textAlign: TextAlign.center,
+                maxLength: index == 0 ? length : 1,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                decoration: const InputDecoration(counterText: ''),
+                onChanged: (value) => _handleChange(index, value),
+              ),
             ),
           ),
         ),

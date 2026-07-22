@@ -112,6 +112,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phoneInvalid => 'Enter a valid phone number.';
 
   @override
+  String get splashTagline => 'YOUR COFFEE, YOUR MOMENT';
+
+  @override
+  String otpDigitLabel(int position) {
+    return 'OTP digit $position';
+  }
+
+  @override
   String get sendCode => 'Send code';
 
   @override

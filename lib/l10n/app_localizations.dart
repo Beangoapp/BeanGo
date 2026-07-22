@@ -296,6 +296,18 @@ abstract class AppLocalizations {
   /// **'Enter a valid phone number.'**
   String get phoneInvalid;
 
+  /// No description provided for @splashTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'YOUR COFFEE, YOUR MOMENT'**
+  String get splashTagline;
+
+  /// No description provided for @otpDigitLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'OTP digit {position}'**
+  String otpDigitLabel(int position);
+
   /// No description provided for @sendCode.
   ///
   /// In en, this message translates to:

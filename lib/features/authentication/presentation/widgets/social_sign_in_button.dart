@@ -17,8 +17,8 @@ class SocialSignInButton extends StatelessWidget {
   final bool isLoading;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-    height: 56,
+  Widget build(BuildContext context) => ConstrainedBox(
+    constraints: const BoxConstraints(minHeight: 56),
     child: OutlinedButton.icon(
       onPressed: isLoading ? null : onPressed,
       icon: Icon(icon, size: 22),

@@ -28,7 +28,7 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
   DateTime? _dateOfBirth;
   UserGender? _gender;
   var _acceptedTerms = false;
-  var _submitted = false;
+  var _termsInteracted = false;
 
   bool get _canSubmit =>
       AuthValidators.isValidFullName(_nameController.text) &&
@@ -48,7 +48,7 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
       context: context,
       initialDate: DateTime(now.year - 18),
       firstDate: DateTime(now.year - 100),
-      lastDate: DateTime(now.year - 13),
+      lastDate: now,
     );
     if (selected != null) {
       setState(() => _dateOfBirth = selected);
@@ -56,7 +56,6 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
   }
 
   Future<void> _submit() async {
-    setState(() => _submitted = true);
     if (!(_formKey.currentState?.validate() ?? false) || !_acceptedTerms) {
       return;
     }
@@ -86,9 +85,7 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
       body: l10n.completeProfileBody,
       child: Form(
         key: _formKey,
-        autovalidateMode: _submitted
-            ? AutovalidateMode.onUserInteraction
-            : AutovalidateMode.disabled,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -108,6 +105,7 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
               label: l10n.emailOptional,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.done,
+              textDirection: TextDirection.ltr,
               autofillHints: const [AutofillHints.email],
               validator: (value) => AuthValidators.isValidEmail(value ?? '')
                   ? null
@@ -155,10 +153,12 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
               title: Text(l10n.acceptTerms),
-              onChanged: (value) =>
-                  setState(() => _acceptedTerms = value ?? false),
+              onChanged: (value) => setState(() {
+                _termsInteracted = true;
+                _acceptedTerms = value ?? false;
+              }),
             ),
-            if (_submitted && !_acceptedTerms)
+            if (_termsInteracted && !_acceptedTerms)
               Text(
                 l10n.termsRequired,
                 style: TextStyle(color: Theme.of(context).colorScheme.error),

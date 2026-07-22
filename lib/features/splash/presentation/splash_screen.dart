@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../authentication/domain/entities/auth_state.dart';
 import '../../authentication/presentation/controllers/authentication_controller.dart';
 import '../application/splash_controller.dart';
@@ -78,14 +79,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 ),
               ),
             ),
-            const Positioned(
+            Positioned(
               left: 24,
               right: 24,
               bottom: 30,
               child: Text(
-                'YOUR COFFEE, YOUR MOMENT',
+                AppLocalizations.of(context).splashTagline,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0x99FFF7EC),
                   fontSize: 11,
                   fontWeight: FontWeight.w600,

@@ -110,6 +110,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get phoneInvalid => 'أدخل رقم هاتف صحيحًا.';
 
   @override
+  String get splashTagline => 'قهوتك، لحظتك';
+
+  @override
+  String otpDigitLabel(int position) {
+    return 'الرقم $position من رمز التحقق';
+  }
+
+  @override
   String get sendCode => 'إرسال الرمز';
 
   @override

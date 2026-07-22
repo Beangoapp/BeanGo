@@ -92,6 +92,7 @@ class _OtpVerificationScreenState extends ConsumerState<OtpVerificationScreen> {
           OtpInput(
             key: _otpKey,
             enabled: !auth.isLoading,
+            digitSemanticLabel: l10n.otpDigitLabel,
             onChanged: (value) {
               setState(() => _code = value);
               if (auth.error != null) {
