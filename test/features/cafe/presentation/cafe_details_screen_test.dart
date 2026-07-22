@@ -57,5 +57,12 @@ void main() {
     expect(Directionality.of(tester.element(screen)), TextDirection.rtl);
     expect(Theme.of(tester.element(screen)).brightness, Brightness.dark);
     expect(find.text('الأكثر طلبًا'), findsOneWidget);
+    await tester.tap(find.text('قهوة ساخنة'));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(
+      find.byKey(const ValueKey('cafe-product-product-2')),
+      findsOneWidget,
+    );
   });
 }

@@ -44,6 +44,7 @@ class _CafeExperience extends ConsumerStatefulWidget {
 
 class _CafeExperienceState extends ConsumerState<_CafeExperience> {
   var _reviewsHighestFirst = false;
+  var _selectedCategoryIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -64,98 +65,103 @@ class _CafeExperienceState extends ConsumerState<_CafeExperience> {
               details.products.any((product) => product.category == category),
         )
         .toList();
-    return DefaultTabController(
-      length: categories.length,
-      child: Scaffold(
-        key: const ValueKey('cafe-details-screen'),
-        body: NestedScrollView(
-          headerSliverBuilder: (context, innerScrolled) => [
-            SliverAppBar(
-              pinned: true,
-              expandedHeight: 390,
-              stretch: true,
-              actions: [
-                IconButton.filledTonal(
-                  onPressed: () => ref
-                      .read(cafeFavoritesProvider.notifier)
-                      .toggleCafe(details.cafe.id),
-                  tooltip: 'Favorite',
-                  icon: Icon(
-                    favorites.cafeIds.contains(details.cafe.id)
-                        ? Icons.favorite_rounded
-                        : Icons.favorite_border_rounded,
-                  ),
-                ),
-                IconButton.filledTonal(
-                  onPressed: () => ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(details.cafe.name))),
-                  tooltip: 'Share',
-                  icon: const Icon(Icons.ios_share_rounded),
-                ),
-                const SizedBox(width: 8),
-              ],
-              flexibleSpace: FlexibleSpaceBar(
-                background: _CafeHero(
-                  cafe: details.cafe,
-                  heroTag: widget.heroTag,
+    final selectedIndex = _selectedCategoryIndex.clamp(
+      0,
+      categories.length - 1,
+    );
+    final selectedCategory = categories[selectedIndex];
+    final categoryBarHeight =
+        (52 + (MediaQuery.textScalerOf(context).scale(16) - 16).clamp(0, 18))
+            .toDouble();
+    return Scaffold(
+      key: const ValueKey('cafe-details-screen'),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerScrolled) => [
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 390,
+            stretch: true,
+            actions: [
+              IconButton.filledTonal(
+                onPressed: () => ref
+                    .read(cafeFavoritesProvider.notifier)
+                    .toggleCafe(details.cafe.id),
+                tooltip: 'Favorite',
+                icon: Icon(
+                  favorites.cafeIds.contains(details.cafe.id)
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_rounded,
                 ),
               ),
-            ),
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _TabHeaderDelegate(
-                TabBar(
-                  key: const ValueKey('cafe-category-tabs'),
-                  isScrollable: true,
-                  tabAlignment: TabAlignment.start,
-                  tabs: [
-                    for (final category in categories)
-                      Tab(text: _categoryLabel(strings.ar, category)),
-                  ],
-                ),
+              IconButton.filledTonal(
+                onPressed: () => ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(details.cafe.name))),
+                tooltip: 'Share',
+                icon: const Icon(Icons.ios_share_rounded),
               ),
-            ),
-          ],
-          body: TabBarView(
-            children: [
-              for (var index = 0; index < categories.length; index++)
-                _CategoryMenu(
-                  products: details.products
-                      .where((product) => product.category == categories[index])
-                      .toList(),
-                  favorites: favorites.productIds,
-                  onFavorite: (id) => ref
-                      .read(cafeFavoritesProvider.notifier)
-                      .toggleProduct(id),
-                  onQuickAdd: (product) {
-                    ref.read(cafeCartProvider.notifier).add(product);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          '${product.localizedName(strings.ar)} · ${strings.added}',
-                        ),
-                      ),
-                    );
-                  },
-                  onOpen: (product, tag) => context.push(
-                    AppRoutes.product(product.id),
-                    extra: ProductRouteArgs(heroTag: tag),
-                  ),
-                  footer: index == 0
-                      ? _CafeFooter(
-                          details: details,
-                          highestFirst: _reviewsHighestFirst,
-                          onSort: (value) =>
-                              setState(() => _reviewsHighestFirst = value),
-                          onProduct: (product, tag) => context.push(
-                            AppRoutes.product(product.id),
-                            extra: ProductRouteArgs(heroTag: tag),
-                          ),
-                        )
-                      : null,
-                ),
+              const SizedBox(width: 8),
             ],
+            flexibleSpace: FlexibleSpaceBar(
+              background: _CafeHero(
+                cafe: details.cafe,
+                heroTag: widget.heroTag,
+              ),
+            ),
+          ),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _CategoryHeaderDelegate(
+              selectedIndex: selectedIndex,
+              height: categoryBarHeight,
+              child: _StickyCategoryBar(
+                key: const ValueKey('cafe-category-tabs'),
+                categories: categories,
+                selectedIndex: selectedIndex,
+                arabic: strings.ar,
+                onSelected: (index) =>
+                    setState(() => _selectedCategoryIndex = index),
+              ),
+            ),
+          ),
+        ],
+        body: AnimatedSwitcher(
+          duration: AppMotion.standard,
+          switchInCurve: AppMotion.enterCurve,
+          child: _CategoryMenu(
+            key: ValueKey(selectedCategory),
+            products: details.products
+                .where((product) => product.category == selectedCategory)
+                .toList(),
+            favorites: favorites.productIds,
+            onFavorite: (id) =>
+                ref.read(cafeFavoritesProvider.notifier).toggleProduct(id),
+            onQuickAdd: (product) {
+              ref.read(cafeCartProvider.notifier).add(product);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    '${product.localizedName(strings.ar)} · ${strings.added}',
+                  ),
+                ),
+              );
+            },
+            onOpen: (product, tag) => context.push(
+              AppRoutes.product(product.id),
+              extra: ProductRouteArgs(heroTag: tag),
+            ),
+            footer: selectedIndex == 0
+                ? _CafeFooter(
+                    details: details,
+                    highestFirst: _reviewsHighestFirst,
+                    onSort: (value) =>
+                        setState(() => _reviewsHighestFirst = value),
+                    onProduct: (product, tag) => context.push(
+                      AppRoutes.product(product.id),
+                      extra: ProductRouteArgs(heroTag: tag),
+                    ),
+                  )
+                : null,
           ),
         ),
       ),
@@ -264,13 +270,19 @@ class _HeroMeta extends StatelessWidget {
   );
 }
 
-class _TabHeaderDelegate extends SliverPersistentHeaderDelegate {
-  const _TabHeaderDelegate(this.tabBar);
-  final TabBar tabBar;
+class _CategoryHeaderDelegate extends SliverPersistentHeaderDelegate {
+  const _CategoryHeaderDelegate({
+    required this.child,
+    required this.selectedIndex,
+    required this.height,
+  });
+  final Widget child;
+  final int selectedIndex;
+  final double height;
   @override
-  double get minExtent => 52;
+  double get minExtent => height;
   @override
-  double get maxExtent => 52;
+  double get maxExtent => height;
   @override
   Widget build(
     BuildContext context,
@@ -279,11 +291,75 @@ class _TabHeaderDelegate extends SliverPersistentHeaderDelegate {
   ) => Material(
     color: Theme.of(context).colorScheme.surface,
     elevation: overlapsContent ? 2 : 0,
-    child: tabBar,
+    child: child,
   );
   @override
-  bool shouldRebuild(_TabHeaderDelegate oldDelegate) =>
-      oldDelegate.tabBar.tabs.length != tabBar.tabs.length;
+  bool shouldRebuild(_CategoryHeaderDelegate oldDelegate) =>
+      oldDelegate.selectedIndex != selectedIndex ||
+      oldDelegate.height != height ||
+      oldDelegate.child != child;
+}
+
+class _StickyCategoryBar extends StatelessWidget {
+  const _StickyCategoryBar({
+    required this.categories,
+    required this.selectedIndex,
+    required this.arabic,
+    required this.onSelected,
+    super.key,
+  });
+  final List<CafeCategory> categories;
+  final int selectedIndex;
+  final bool arabic;
+  final ValueChanged<int> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsetsDirectional.symmetric(horizontal: AppSpacing.md),
+      child: Row(
+        children: [
+          for (var index = 0; index < categories.length; index++)
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: AppSpacing.xs),
+              child: Semantics(
+                button: true,
+                selected: selectedIndex == index,
+                child: InkWell(
+                  onTap: () => onSelected(index),
+                  borderRadius: BorderRadius.circular(AppRadius.pill),
+                  child: AnimatedContainer(
+                    duration: AppMotion.standard,
+                    padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: AppSpacing.md,
+                      vertical: AppSpacing.sm,
+                    ),
+                    decoration: BoxDecoration(
+                      color: selectedIndex == index
+                          ? colors.primaryContainer
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(AppRadius.pill),
+                    ),
+                    child: Text(
+                      _categoryLabel(arabic, categories[index]),
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: selectedIndex == index
+                            ? colors.onPrimaryContainer
+                            : colors.onSurfaceVariant,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
 }
 
 class _CategoryMenu extends StatelessWidget {
@@ -293,6 +369,7 @@ class _CategoryMenu extends StatelessWidget {
     required this.onFavorite,
     required this.onQuickAdd,
     required this.onOpen,
+    super.key,
     this.footer,
   });
   final List<CafeProduct> products;
