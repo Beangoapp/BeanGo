@@ -350,7 +350,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get remove => 'Remove';
 
   @override
-  String get deliveryLocation => 'West Bay, Doha';
+  String get deliveryLocation => 'Delivery location';
 
   @override
   String get searchCoffee => 'Search coffee or cafés';

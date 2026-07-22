@@ -71,12 +71,14 @@ class HomeHeader extends StatelessWidget {
                 children: [
                   Text(
                     l10n.deliveryLocation,
+                    key: const ValueKey('home-delivery-location-label'),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: colors.onSurfaceVariant,
                     ),
                   ),
                   Text(
                     locationLabel,
+                    key: const ValueKey('home-current-location'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -144,6 +146,7 @@ class _AnimatedHomeSearchState extends State<AnimatedHomeSearch> {
     final l10n = AppLocalizations.of(context);
     final hints = [l10n.searchCafes, l10n.searchDrinks, l10n.searchDesserts];
     return TextField(
+      key: const ValueKey('home-search-field'),
       controller: widget.controller,
       onChanged: (value) {
         widget.onChanged(value);
@@ -166,7 +169,10 @@ class _AnimatedHomeSearchState extends State<AnimatedHomeSearch> {
               child: child,
             ),
           ),
-          child: Text(hints[_hintIndex], key: ValueKey(_hintIndex)),
+          child: Text(
+            hints[_hintIndex],
+            key: ValueKey('home-search-hint-$_hintIndex'),
+          ),
         ),
         suffixIcon: widget.controller.text.isEmpty
             ? null

@@ -37,27 +37,61 @@ void main() {
     await tester.pumpWidget(app());
     await tester.pumpAndSettle();
 
+    expect(find.byKey(const ValueKey('home-header')), findsOneWidget);
     expect(find.text('BeanGo'), findsOneWidget);
-    expect(find.text('West Bay, Doha'), findsOneWidget);
-    expect(find.text('Search cafés'), findsOneWidget);
-    expect(find.text('Categories'), findsOneWidget);
-    expect(find.text('Nearby cafés'), findsOneWidget);
-
-    await tester.drag(find.byType(CustomScrollView), const Offset(0, -1200));
-    await tester.pump(const Duration(milliseconds: 400));
-    expect(find.text('Featured cafés'), findsOneWidget);
-    expect(find.text('Trending drinks'), findsOneWidget);
+    final location = tester.widget<Text>(
+      find.byKey(const ValueKey('home-current-location')),
+    );
+    expect(location.data, 'West Bay, Doha');
+    final locationLabel = tester.widget<Text>(
+      find.byKey(const ValueKey('home-delivery-location-label')),
+    );
+    expect(locationLabel.data, 'Delivery location');
+    expect(find.byKey(const ValueKey('home-search-field')), findsOneWidget);
+    final searchHint = tester.widget<Text>(
+      find.byKey(const ValueKey('home-search-hint-0')),
+    );
+    expect(searchHint.data, 'Search cafés');
+    final homeScroll = find
+        .descendant(
+          of: find.byType(CustomScrollView),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    for (final sectionKey in const [
+      ValueKey('home-section-promotions'),
+      ValueKey('home-section-categories'),
+      ValueKey('home-section-nearby'),
+      ValueKey('home-section-featured'),
+      ValueKey('home-section-trending'),
+      ValueKey('home-section-recently-ordered'),
+      ValueKey('home-section-recommended'),
+    ]) {
+      final section = find.byKey(sectionKey);
+      await tester.scrollUntilVisible(section, 320, scrollable: homeScroll);
+      await tester.pump(const Duration(milliseconds: 350));
+      expect(section, findsOneWidget);
+    }
   });
 
   testWidgets('filters cafés using the search field', (tester) async {
     await tester.pumpWidget(app());
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byType(TextField), 'Arabica');
+    await tester.enterText(
+      find.byKey(const ValueKey('home-search-field')),
+      'Arabica',
+    );
     await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.text('Search results'), findsOneWidget);
-    expect(find.text('% Arabica'), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('home-section-search-results')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const ValueKey('home-search-result-cafe-arabica')),
+      findsOneWidget,
+    );
   });
 
   testWidgets('supports Arabic RTL and dark mode', (tester) async {
@@ -67,11 +101,35 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      Directionality.of(tester.element(find.byType(HomeScreen))),
+      Directionality.of(
+        tester.element(find.byKey(const ValueKey('home-screen'))),
+      ),
       TextDirection.rtl,
     );
-    expect(find.text('الخليج الغربي، الدوحة'), findsOneWidget);
-    expect(find.text('ابحث عن مقهى'), findsOneWidget);
+    expect(
+      Theme.of(
+        tester.element(find.byKey(const ValueKey('home-screen'))),
+      ).brightness,
+      Brightness.dark,
+    );
+    final location = tester.widget<Text>(
+      find.byKey(const ValueKey('home-current-location')),
+    );
+    expect(location.data, 'الخليج الغربي، الدوحة');
+    final locationLabel = tester.widget<Text>(
+      find.byKey(const ValueKey('home-delivery-location-label')),
+    );
+    expect(locationLabel.data, 'موقع التوصيل');
+    final searchHint = tester.widget<Text>(
+      find.byKey(const ValueKey('home-search-hint-0')),
+    );
+    expect(searchHint.data, 'ابحث عن مقهى');
+    expect(
+      Directionality.of(
+        tester.element(find.byKey(const ValueKey('home-search-field'))),
+      ),
+      TextDirection.rtl,
+    );
   });
 
   testWidgets('renders offline and retry state', (tester) async {

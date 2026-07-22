@@ -98,6 +98,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   Widget build(BuildContext context) {
     final feed = ref.watch(homeFeedProvider);
     return Scaffold(
+      key: const ValueKey('home-screen'),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         bottom: false,
@@ -221,6 +222,7 @@ class _HomeContent extends ConsumerWidget {
             sliver: SliverList.list(
               children: [
                 HomeHeader(
+                  key: const ValueKey('home-header'),
                   userName: ref.watch(homeUserNameProvider),
                   locationLabel: _locationName(
                     l10n,
@@ -244,7 +246,10 @@ class _HomeContent extends ConsumerWidget {
                     onFavorite: onFavorite,
                   )
                 else ...[
-                  PromotionCarousel(promotions: content.promotions),
+                  PromotionCarousel(
+                    key: const ValueKey('home-section-promotions'),
+                    promotions: content.promotions,
+                  ),
                   const SizedBox(height: AppSpacing.xl),
                   _CategoriesSection(
                     categories: content.categories,
@@ -260,6 +265,7 @@ class _HomeContent extends ConsumerWidget {
                   _FeaturedSection(cafes: content.featuredCafes),
                   const SizedBox(height: AppSpacing.xl),
                   _ProductSection(
+                    key: const ValueKey('home-section-trending'),
                     title: l10n.trendingDrinks,
                     products: _filterProducts(
                       content.trendingDrinks,
@@ -271,12 +277,14 @@ class _HomeContent extends ConsumerWidget {
                   if (content.recentOrders.isNotEmpty) ...[
                     const SizedBox(height: AppSpacing.xl),
                     _RecentlyOrderedSection(
+                      key: const ValueKey('home-section-recently-ordered'),
                       orders: content.recentOrders,
                       onTap: onProductTap,
                     ),
                   ],
                   const SizedBox(height: AppSpacing.xl),
                   _ProductSection(
+                    key: const ValueKey('home-section-recommended'),
                     title: l10n.recommendedForYouTitle,
                     products: _filterProducts(
                       content.recommendedProducts,
@@ -316,7 +324,10 @@ class _CategoriesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HomeSectionHeader(title: l10n.categories),
+        HomeSectionHeader(
+          key: const ValueKey('home-section-categories'),
+          title: l10n.categories,
+        ),
         const SizedBox(height: AppSpacing.sm),
         SizedBox(
           height: 96,
@@ -410,7 +421,11 @@ class _NearbySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HomeSectionHeader(title: l10n.nearbyCafes, onViewAll: () {}),
+        HomeSectionHeader(
+          key: const ValueKey('home-section-nearby'),
+          title: l10n.nearbyCafes,
+          onViewAll: () {},
+        ),
         const SizedBox(height: AppSpacing.sm),
         for (final cafe in cafes) ...[
           NearbyCafeCard(
@@ -434,7 +449,10 @@ class _FeaturedSection extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      HomeSectionHeader(title: AppLocalizations.of(context).featuredCafes),
+      HomeSectionHeader(
+        key: const ValueKey('home-section-featured'),
+        title: AppLocalizations.of(context).featuredCafes,
+      ),
       const SizedBox(height: AppSpacing.sm),
       SizedBox(
         height: 224,
@@ -456,6 +474,7 @@ class _ProductSection extends StatelessWidget {
     required this.products,
     required this.onTap,
     required this.onQuickAdd,
+    super.key,
   });
 
   final String title;
@@ -502,7 +521,11 @@ class _ProductSection extends StatelessWidget {
 }
 
 class _RecentlyOrderedSection extends StatelessWidget {
-  const _RecentlyOrderedSection({required this.orders, required this.onTap});
+  const _RecentlyOrderedSection({
+    required this.orders,
+    required this.onTap,
+    super.key,
+  });
 
   final List<HomeRecentOrder> orders;
   final _ProductTap onTap;
@@ -584,10 +607,14 @@ class _SearchResultsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HomeSectionHeader(title: l10n.searchResults),
+        HomeSectionHeader(
+          key: const ValueKey('home-section-search-results'),
+          title: l10n.searchResults,
+        ),
         const SizedBox(height: AppSpacing.md),
         for (final cafe in results.cafes) ...[
           NearbyCafeCard(
+            key: ValueKey('home-search-result-cafe-${cafe.id}'),
             cafe: cafe,
             onFavorite: () => onFavorite(cafe),
             onTap: () {},
@@ -596,6 +623,7 @@ class _SearchResultsSection extends StatelessWidget {
         ],
         if (results.products.isNotEmpty)
           _ProductSection(
+            key: const ValueKey('home-search-products'),
             title: l10n.trendingDrinks,
             products: results.products,
             onTap: onProductTap,
@@ -628,6 +656,7 @@ class _HomeNavigation extends ConsumerWidget {
           ),
         ),
         child: NavigationBar(
+          key: const ValueKey('home-navigation'),
           height: 72,
           backgroundColor: Colors.transparent,
           indicatorColor: colors.primaryContainer,

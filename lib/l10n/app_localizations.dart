@@ -725,7 +725,7 @@ abstract class AppLocalizations {
   /// No description provided for @deliveryLocation.
   ///
   /// In en, this message translates to:
-  /// **'West Bay, Doha'**
+  /// **'Delivery location'**
   String get deliveryLocation;
 
   /// No description provided for @searchCoffee.

@@ -345,7 +345,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get remove => 'إزالة';
 
   @override
-  String get deliveryLocation => 'الخليج الغربي، الدوحة';
+  String get deliveryLocation => 'موقع التوصيل';
 
   @override
   String get searchCoffee => 'ابحث عن قهوة أو مقهى';
