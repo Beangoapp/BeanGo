@@ -498,4 +498,140 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get changePhone => 'Change phone number';
+
+  @override
+  String get changeLocation => 'Change location';
+
+  @override
+  String get currentLocation => 'West Bay, Doha';
+
+  @override
+  String get searchCafes => 'Search cafés';
+
+  @override
+  String get searchDrinks => 'Search drinks';
+
+  @override
+  String get searchDesserts => 'Search desserts';
+
+  @override
+  String get promoTitleThree => 'A smoother morning';
+
+  @override
+  String get promoBodyThree => 'Your Flat White, ready when you are.';
+
+  @override
+  String get icedCoffee => 'Iced Coffee';
+
+  @override
+  String get espressoCategory => 'Espresso';
+
+  @override
+  String get matchaCategory => 'Matcha';
+
+  @override
+  String get teaCategory => 'Tea';
+
+  @override
+  String get dessertsCategory => 'Desserts';
+
+  @override
+  String get bakeryCategory => 'Bakery';
+
+  @override
+  String get breakfastCategory => 'Breakfast';
+
+  @override
+  String get featuredCafes => 'Featured cafés';
+
+  @override
+  String get trendingDrinks => 'Trending drinks';
+
+  @override
+  String get recentlyOrdered => 'Recently ordered';
+
+  @override
+  String get recommendedForYouTitle => 'Recommended for you';
+
+  @override
+  String get viewAll => 'View all';
+
+  @override
+  String get openNow => 'Open';
+
+  @override
+  String get closedNow => 'Closed';
+
+  @override
+  String distanceKm(String distance) {
+    return '$distance km';
+  }
+
+  @override
+  String qarPrice(String price) {
+    return 'QAR $price';
+  }
+
+  @override
+  String addToOrder(String item) {
+    return 'Add $item to order';
+  }
+
+  @override
+  String get addedToOrder => 'Added to your order';
+
+  @override
+  String favoriteCafe(String cafe) {
+    return 'Favorite $cafe';
+  }
+
+  @override
+  String unfavoriteCafe(String cafe) {
+    return 'Remove $cafe from favorites';
+  }
+
+  @override
+  String get reorder => 'Reorder';
+
+  @override
+  String get homeOfflineTitle => 'You\'re offline';
+
+  @override
+  String get homeOfflineBody => 'Check your connection and try again.';
+
+  @override
+  String get homeErrorTitle => 'We couldn\'t load BeanGo';
+
+  @override
+  String get homeErrorBody => 'Something went wrong. Please try again.';
+
+  @override
+  String get homeEmptyTitle => 'Coffee is brewing';
+
+  @override
+  String get homeEmptyBody => 'No cafés are available in this area yet.';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get noSearchResults => 'No matches found';
+
+  @override
+  String get noSearchResultsBody => 'Try a different café, drink, or dessert.';
+
+  @override
+  String get searchResults => 'Search results';
+
+  @override
+  String get americano => 'Americano';
+
+  @override
+  String get chocolateCroissant => 'Chocolate Croissant';
+
+  @override
+  String get pearlLocation => 'The Pearl, Doha';
+
+  @override
+  String get msheirebLocation => 'Msheireb Downtown, Doha';
 }

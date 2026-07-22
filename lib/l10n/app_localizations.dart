@@ -1015,6 +1015,258 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change phone number'**
   String get changePhone;
+
+  /// No description provided for @changeLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Change location'**
+  String get changeLocation;
+
+  /// No description provided for @currentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'West Bay, Doha'**
+  String get currentLocation;
+
+  /// No description provided for @searchCafes.
+  ///
+  /// In en, this message translates to:
+  /// **'Search cafés'**
+  String get searchCafes;
+
+  /// No description provided for @searchDrinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Search drinks'**
+  String get searchDrinks;
+
+  /// No description provided for @searchDesserts.
+  ///
+  /// In en, this message translates to:
+  /// **'Search desserts'**
+  String get searchDesserts;
+
+  /// No description provided for @promoTitleThree.
+  ///
+  /// In en, this message translates to:
+  /// **'A smoother morning'**
+  String get promoTitleThree;
+
+  /// No description provided for @promoBodyThree.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Flat White, ready when you are.'**
+  String get promoBodyThree;
+
+  /// No description provided for @icedCoffee.
+  ///
+  /// In en, this message translates to:
+  /// **'Iced Coffee'**
+  String get icedCoffee;
+
+  /// No description provided for @espressoCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Espresso'**
+  String get espressoCategory;
+
+  /// No description provided for @matchaCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Matcha'**
+  String get matchaCategory;
+
+  /// No description provided for @teaCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Tea'**
+  String get teaCategory;
+
+  /// No description provided for @dessertsCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Desserts'**
+  String get dessertsCategory;
+
+  /// No description provided for @bakeryCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Bakery'**
+  String get bakeryCategory;
+
+  /// No description provided for @breakfastCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get breakfastCategory;
+
+  /// No description provided for @featuredCafes.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured cafés'**
+  String get featuredCafes;
+
+  /// No description provided for @trendingDrinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Trending drinks'**
+  String get trendingDrinks;
+
+  /// No description provided for @recentlyOrdered.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently ordered'**
+  String get recentlyOrdered;
+
+  /// No description provided for @recommendedForYouTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended for you'**
+  String get recommendedForYouTitle;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View all'**
+  String get viewAll;
+
+  /// No description provided for @openNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get openNow;
+
+  /// No description provided for @closedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get closedNow;
+
+  /// No description provided for @distanceKm.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} km'**
+  String distanceKm(String distance);
+
+  /// No description provided for @qarPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'QAR {price}'**
+  String qarPrice(String price);
+
+  /// No description provided for @addToOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {item} to order'**
+  String addToOrder(String item);
+
+  /// No description provided for @addedToOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to your order'**
+  String get addedToOrder;
+
+  /// No description provided for @favoriteCafe.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite {cafe}'**
+  String favoriteCafe(String cafe);
+
+  /// No description provided for @unfavoriteCafe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {cafe} from favorites'**
+  String unfavoriteCafe(String cafe);
+
+  /// No description provided for @reorder.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder'**
+  String get reorder;
+
+  /// No description provided for @homeOfflineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline'**
+  String get homeOfflineTitle;
+
+  /// No description provided for @homeOfflineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your connection and try again.'**
+  String get homeOfflineBody;
+
+  /// No description provided for @homeErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load BeanGo'**
+  String get homeErrorTitle;
+
+  /// No description provided for @homeErrorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get homeErrorBody;
+
+  /// No description provided for @homeEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee is brewing'**
+  String get homeEmptyTitle;
+
+  /// No description provided for @homeEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No cafés are available in this area yet.'**
+  String get homeEmptyBody;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @noSearchResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches found'**
+  String get noSearchResults;
+
+  /// No description provided for @noSearchResultsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different café, drink, or dessert.'**
+  String get noSearchResultsBody;
+
+  /// No description provided for @searchResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Search results'**
+  String get searchResults;
+
+  /// No description provided for @americano.
+  ///
+  /// In en, this message translates to:
+  /// **'Americano'**
+  String get americano;
+
+  /// No description provided for @chocolateCroissant.
+  ///
+  /// In en, this message translates to:
+  /// **'Chocolate Croissant'**
+  String get chocolateCroissant;
+
+  /// No description provided for @pearlLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'The Pearl, Doha'**
+  String get pearlLocation;
+
+  /// No description provided for @msheirebLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Msheireb Downtown, Doha'**
+  String get msheirebLocation;
 }
 
 class _AppLocalizationsDelegate

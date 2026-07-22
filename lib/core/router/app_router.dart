@@ -91,7 +91,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRoutes.coffeeDetails,
-        builder: (context, state) => const CoffeeDetailsScreen(),
+        builder: (context, state) => CoffeeDetailsScreen(
+          args: state.extra is CoffeeDetailsArgs
+              ? state.extra! as CoffeeDetailsArgs
+              : null,
+        ),
       ),
       GoRoute(
         path: AppRoutes.cart,

@@ -491,4 +491,140 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get changePhone => 'تغيير رقم الجوال';
+
+  @override
+  String get changeLocation => 'تغيير الموقع';
+
+  @override
+  String get currentLocation => 'الخليج الغربي، الدوحة';
+
+  @override
+  String get searchCafes => 'ابحث عن مقهى';
+
+  @override
+  String get searchDrinks => 'ابحث عن مشروب';
+
+  @override
+  String get searchDesserts => 'ابحث عن حلوى';
+
+  @override
+  String get promoTitleThree => 'صباح أكثر سلاسة';
+
+  @override
+  String get promoBodyThree => 'فلات وايت جاهز في الوقت المناسب لك.';
+
+  @override
+  String get icedCoffee => 'قهوة باردة';
+
+  @override
+  String get espressoCategory => 'إسبريسو';
+
+  @override
+  String get matchaCategory => 'ماتشا';
+
+  @override
+  String get teaCategory => 'شاي';
+
+  @override
+  String get dessertsCategory => 'حلويات';
+
+  @override
+  String get bakeryCategory => 'مخبوزات';
+
+  @override
+  String get breakfastCategory => 'فطور';
+
+  @override
+  String get featuredCafes => 'مقاهٍ مميزة';
+
+  @override
+  String get trendingDrinks => 'مشروبات رائجة';
+
+  @override
+  String get recentlyOrdered => 'طلباتك الأخيرة';
+
+  @override
+  String get recommendedForYouTitle => 'مختار لك';
+
+  @override
+  String get viewAll => 'عرض الكل';
+
+  @override
+  String get openNow => 'مفتوح';
+
+  @override
+  String get closedNow => 'مغلق';
+
+  @override
+  String distanceKm(String distance) {
+    return '$distance كم';
+  }
+
+  @override
+  String qarPrice(String price) {
+    return '$price ر.ق';
+  }
+
+  @override
+  String addToOrder(String item) {
+    return 'أضف $item إلى الطلب';
+  }
+
+  @override
+  String get addedToOrder => 'تمت الإضافة إلى طلبك';
+
+  @override
+  String favoriteCafe(String cafe) {
+    return 'أضف $cafe إلى المفضلة';
+  }
+
+  @override
+  String unfavoriteCafe(String cafe) {
+    return 'احذف $cafe من المفضلة';
+  }
+
+  @override
+  String get reorder => 'أعد الطلب';
+
+  @override
+  String get homeOfflineTitle => 'لا يوجد اتصال';
+
+  @override
+  String get homeOfflineBody => 'تحقق من اتصالك بالإنترنت وحاول مجددًا.';
+
+  @override
+  String get homeErrorTitle => 'تعذر تحميل BeanGo';
+
+  @override
+  String get homeErrorBody => 'حدث خطأ. حاول مرة أخرى.';
+
+  @override
+  String get homeEmptyTitle => 'القهوة قيد التحضير';
+
+  @override
+  String get homeEmptyBody => 'لا توجد مقاهٍ متاحة في هذه المنطقة حاليًا.';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get noSearchResults => 'لا توجد نتائج';
+
+  @override
+  String get noSearchResultsBody => 'جرب اسم مقهى أو مشروب أو حلوى مختلفة.';
+
+  @override
+  String get searchResults => 'نتائج البحث';
+
+  @override
+  String get americano => 'أمريكانو';
+
+  @override
+  String get chocolateCroissant => 'كرواسون بالشوكولاتة';
+
+  @override
+  String get pearlLocation => 'اللؤلؤة، الدوحة';
+
+  @override
+  String get msheirebLocation => 'مشيرب قلب الدوحة';
 }

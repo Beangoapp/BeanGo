@@ -12,7 +12,10 @@ class AppBrand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = light ? AppColors.warmWhite : AppColors.espresso;
+    final colors = Theme.of(context).colorScheme;
+    final foreground = light ? AppColors.warmWhite : colors.onSurface;
+    final markBackground = light ? AppColors.caramel : colors.primary;
+    final markForeground = light ? AppColors.espresso : colors.onPrimary;
     return Semantics(
       label: AppStrings.brandName,
       header: true,
@@ -23,13 +26,13 @@ class AppBrand extends StatelessWidget {
             width: compact ? 30 : 44,
             height: compact ? 30 : 44,
             decoration: BoxDecoration(
-              color: light ? AppColors.caramel : AppColors.espresso,
+              color: markBackground,
               borderRadius: BorderRadius.circular(AppRadius.control),
             ),
             child: Icon(
               Icons.coffee_rounded,
               size: compact ? 17 : 25,
-              color: light ? AppColors.espresso : AppColors.warmWhite,
+              color: markForeground,
             ),
           ),
           const SizedBox(width: AppSpacing.sm),

@@ -9,7 +9,9 @@ import '../../../shared/widgets/app_buttons.dart';
 import '../application/demo_cart_controller.dart';
 
 class CoffeeDetailsScreen extends ConsumerWidget {
-  const CoffeeDetailsScreen({super.key});
+  const CoffeeDetailsScreen({super.key, this.args});
+
+  final CoffeeDetailsArgs? args;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,24 +30,27 @@ class CoffeeDetailsScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(AppRadius.hero),
-                      child: AspectRatio(
-                        aspectRatio: 1.25,
-                        child: Image.asset(
-                          'assets/images/flat_white.png',
-                          fit: BoxFit.cover,
+                    Hero(
+                      tag: args?.heroTag ?? 'coffee-details-default',
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(AppRadius.hero),
+                        child: AspectRatio(
+                          aspectRatio: 1.25,
+                          child: Image.asset(
+                            args?.imageAsset ?? 'assets/images/flat_white.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     Text(
-                      l10n.signatureFlatWhite,
+                      args?.name ?? l10n.signatureFlatWhite,
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     const SizedBox(height: AppSpacing.xs),
                     Text(
-                      l10n.demoCafeName,
+                      args?.cafeName ?? l10n.demoCafeName,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -110,6 +115,20 @@ class CoffeeDetailsScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+class CoffeeDetailsArgs {
+  const CoffeeDetailsArgs({
+    required this.name,
+    required this.cafeName,
+    required this.imageAsset,
+    required this.heroTag,
+  });
+
+  final String name;
+  final String cafeName;
+  final String imageAsset;
+  final String heroTag;
 }
 
 String _money(double value) => 'QAR ${value.toStringAsFixed(2)}';
