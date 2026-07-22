@@ -407,4 +407,80 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cappuccino => 'كابتشينو';
+
+  @override
+  String get continueWithApple => 'المتابعة عبر Apple';
+
+  @override
+  String get continueWithGoogle => 'المتابعة عبر Google';
+
+  @override
+  String get orContinueWith => 'أو تابع برقم الجوال';
+
+  @override
+  String get qatarMobileHint => 'يبدأ بـ 3 أو 5 أو 6 أو 7 ويتبعه 7 أرقام';
+
+  @override
+  String get otpExpired => 'انتهت صلاحية الرمز. اطلب رمزًا جديدًا.';
+
+  @override
+  String get networkError => 'تحقق من الاتصال وحاول مرة أخرى.';
+
+  @override
+  String get completeProfileTitle => 'عرّفنا بنفسك';
+
+  @override
+  String get completeProfileBody =>
+      'بعض التفاصيل تساعدنا على تخصيص تجربة BeanGo لك.';
+
+  @override
+  String get fullName => 'الاسم الكامل';
+
+  @override
+  String get fullNameRequired => 'أدخل الاسم الأول واسم العائلة.';
+
+  @override
+  String get emailOptional => 'البريد الإلكتروني (اختياري)';
+
+  @override
+  String get dateOfBirthOptional => 'تاريخ الميلاد (اختياري)';
+
+  @override
+  String get genderOptional => 'الجنس (اختياري)';
+
+  @override
+  String get female => 'أنثى';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get preferNotToSay => 'أفضل عدم الإفصاح';
+
+  @override
+  String get acceptTerms => 'أوافق على شروط الخدمة وسياسة الخصوصية.';
+
+  @override
+  String get termsRequired => 'وافق على الشروط وسياسة الخصوصية للمتابعة.';
+
+  @override
+  String get saveAndContinue => 'حفظ ومتابعة';
+
+  @override
+  String get welcomeToBeanGo => 'مرحبًا بك في BeanGo';
+
+  @override
+  String get welcomeProfileBody => 'حسابك جاهز. لنكتشف قهوتك القادمة.';
+
+  @override
+  String get startExploring => 'ابدأ الاستكشاف';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get selectDate => 'اختر التاريخ';
+
+  @override
+  String get changePhone => 'تغيير رقم الجوال';
 }

@@ -813,25 +813,196 @@ abstract class AppLocalizations {
   String get roasteryDistrict;
 
   /// No description provided for @newArrivals.
+  ///
+  /// In en, this message translates to:
+  /// **'New arrivals'**
   String get newArrivals;
 
   /// No description provided for @matchaLatte.
+  ///
+  /// In en, this message translates to:
+  /// **'Matcha Latte'**
   String get matchaLatte;
 
   /// No description provided for @pistachioLatte.
+  ///
+  /// In en, this message translates to:
+  /// **'Pistachio Latte'**
   String get pistachioLatte;
 
   /// No description provided for @saffronLatte.
+  ///
+  /// In en, this message translates to:
+  /// **'Saffron Latte'**
   String get saffronLatte;
 
   /// No description provided for @cortado.
+  ///
+  /// In en, this message translates to:
+  /// **'Cortado'**
   String get cortado;
 
   /// No description provided for @v60.
+  ///
+  /// In en, this message translates to:
+  /// **'V60'**
   String get v60;
 
   /// No description provided for @cappuccino.
+  ///
+  /// In en, this message translates to:
+  /// **'Cappuccino'**
   String get cappuccino;
+
+  /// No description provided for @continueWithApple.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get continueWithApple;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// No description provided for @orContinueWith.
+  ///
+  /// In en, this message translates to:
+  /// **'or continue with mobile'**
+  String get orContinueWith;
+
+  /// No description provided for @qatarMobileHint.
+  ///
+  /// In en, this message translates to:
+  /// **'3, 5, 6 or 7 followed by 7 digits'**
+  String get qatarMobileHint;
+
+  /// No description provided for @otpExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This code has expired. Request a new code.'**
+  String get otpExpired;
+
+  /// No description provided for @networkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your connection and try again.'**
+  String get networkError;
+
+  /// No description provided for @completeProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about you'**
+  String get completeProfileTitle;
+
+  /// No description provided for @completeProfileBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A few details help us personalize your BeanGo experience.'**
+  String get completeProfileBody;
+
+  /// No description provided for @fullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fullName;
+
+  /// No description provided for @fullNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first and last name.'**
+  String get fullNameRequired;
+
+  /// No description provided for @emailOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address (optional)'**
+  String get emailOptional;
+
+  /// No description provided for @dateOfBirthOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth (optional)'**
+  String get dateOfBirthOptional;
+
+  /// No description provided for @genderOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender (optional)'**
+  String get genderOptional;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @preferNotToSay.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer not to say'**
+  String get preferNotToSay;
+
+  /// No description provided for @acceptTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept the Terms of Service and Privacy Policy.'**
+  String get acceptTerms;
+
+  /// No description provided for @termsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept the Terms and Privacy Policy to continue.'**
+  String get termsRequired;
+
+  /// No description provided for @saveAndContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Save and continue'**
+  String get saveAndContinue;
+
+  /// No description provided for @welcomeToBeanGo.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to BeanGo'**
+  String get welcomeToBeanGo;
+
+  /// No description provided for @welcomeProfileBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is ready. Let’s find your next great coffee.'**
+  String get welcomeProfileBody;
+
+  /// No description provided for @startExploring.
+  ///
+  /// In en, this message translates to:
+  /// **'Start exploring'**
+  String get startExploring;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logout;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get selectDate;
+
+  /// No description provided for @changePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Change phone number'**
+  String get changePhone;
 }
 
 class _AppLocalizationsDelegate

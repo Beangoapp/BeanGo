@@ -412,4 +412,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cappuccino => 'Cappuccino';
+
+  @override
+  String get continueWithApple => 'Continue with Apple';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
+  String get orContinueWith => 'or continue with mobile';
+
+  @override
+  String get qatarMobileHint => '3, 5, 6 or 7 followed by 7 digits';
+
+  @override
+  String get otpExpired => 'This code has expired. Request a new code.';
+
+  @override
+  String get networkError => 'Check your connection and try again.';
+
+  @override
+  String get completeProfileTitle => 'Tell us about you';
+
+  @override
+  String get completeProfileBody =>
+      'A few details help us personalize your BeanGo experience.';
+
+  @override
+  String get fullName => 'Full name';
+
+  @override
+  String get fullNameRequired => 'Enter your first and last name.';
+
+  @override
+  String get emailOptional => 'Email address (optional)';
+
+  @override
+  String get dateOfBirthOptional => 'Date of birth (optional)';
+
+  @override
+  String get genderOptional => 'Gender (optional)';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get preferNotToSay => 'Prefer not to say';
+
+  @override
+  String get acceptTerms => 'I accept the Terms of Service and Privacy Policy.';
+
+  @override
+  String get termsRequired =>
+      'Accept the Terms and Privacy Policy to continue.';
+
+  @override
+  String get saveAndContinue => 'Save and continue';
+
+  @override
+  String get welcomeToBeanGo => 'Welcome to BeanGo';
+
+  @override
+  String get welcomeProfileBody =>
+      'Your account is ready. Let’s find your next great coffee.';
+
+  @override
+  String get startExploring => 'Start exploring';
+
+  @override
+  String get logout => 'Log out';
+
+  @override
+  String get selectDate => 'Select date';
+
+  @override
+  String get changePhone => 'Change phone number';
 }

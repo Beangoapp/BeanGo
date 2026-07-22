@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../authentication/domain/entities/auth_state.dart';
+import '../../authentication/presentation/controllers/authentication_controller.dart';
 import '../application/splash_controller.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -39,7 +41,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   Future<void> _continueToApp() async {
     await ref.read(splashControllerProvider).waitUntilReady();
-    if (mounted) context.go(AppRoutes.welcome);
+    if (!mounted) return;
+    final auth = ref.read(authenticationControllerProvider);
+    final destination = switch (auth.stage) {
+      AuthStage.restoring => AppRoutes.splash,
+      AuthStage.profileRequired => AppRoutes.completeProfile,
+      AuthStage.authenticated => AppRoutes.home,
+      AuthStage.awaitingOtp => AppRoutes.verification,
+      AuthStage.unauthenticated =>
+        auth.onboardingCompleted ? AppRoutes.login : AppRoutes.onboarding,
+    };
+    if (destination != AppRoutes.splash) context.go(destination);
   }
 
   @override

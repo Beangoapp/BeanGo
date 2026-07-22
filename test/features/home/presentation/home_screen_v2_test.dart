@@ -22,11 +22,17 @@ void main() {
 
     expect(find.text('Search coffee or cafés'), findsOneWidget);
     expect(find.text('Order Again'), findsOneWidget);
+
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -550));
+    await tester.pumpAndSettle();
     expect(find.text('Categories'), findsOneWidget);
     expect(find.text('Recommended for you'), findsOneWidget);
+
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -700));
+    await tester.pumpAndSettle();
     expect(find.text('Nearby cafés'), findsOneWidget);
 
-    await tester.drag(find.byType(CustomScrollView), const Offset(0, -800));
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -900));
     await tester.pumpAndSettle();
     expect(find.text('Popular today'), findsOneWidget);
   });
@@ -50,6 +56,10 @@ void main() {
       TextDirection.rtl,
     );
     expect(find.text('ابحث عن قهوة أو مقهى'), findsOneWidget);
+
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -550));
+    await tester.pumpAndSettle();
     expect(find.text('التصنيفات'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 400));
   });
 }
