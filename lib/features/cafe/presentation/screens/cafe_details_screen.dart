@@ -75,8 +75,9 @@ class _CafeExperienceState extends ConsumerState<_CafeExperience> {
             .toDouble();
     return Scaffold(
       key: const ValueKey('cafe-details-screen'),
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerScrolled) => [
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
           SliverAppBar(
             pinned: true,
             expandedHeight: 390,
@@ -124,11 +125,7 @@ class _CafeExperienceState extends ConsumerState<_CafeExperience> {
               ),
             ),
           ),
-        ],
-        body: AnimatedSwitcher(
-          duration: AppMotion.standard,
-          switchInCurve: AppMotion.enterCurve,
-          child: _CategoryMenu(
+          _CategoryMenu(
             key: ValueKey(selectedCategory),
             products: details.products
                 .where((product) => product.category == selectedCategory)
@@ -163,7 +160,7 @@ class _CafeExperienceState extends ConsumerState<_CafeExperience> {
                   )
                 : null,
           ),
-        ),
+        ],
       ),
     );
   }
@@ -381,26 +378,33 @@ class _CategoryMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (products.isEmpty) {
-      return Center(child: Text(CafeStrings(context).emptyMenu));
+      return SliverFillRemaining(
+        hasScrollBody: false,
+        child: Center(child: Text(CafeStrings(context).emptyMenu)),
+      );
     }
-    return ListView(
-      key: PageStorageKey(products.first.category.name),
-      padding: const EdgeInsets.all(AppSpacing.lg),
-      children: [
-        for (final product in products) ...[
-          CafeProductCard(
-            key: ValueKey('cafe-product-${product.id}'),
-            product: product,
-            heroTag: 'cafe-product-${product.id}',
-            isFavorite: favorites.contains(product.id),
-            onFavorite: () => onFavorite(product.id),
-            onQuickAdd: () => onQuickAdd(product),
-            onTap: () => onOpen(product, 'cafe-product-${product.id}'),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-        ],
-        ?footer,
-      ],
+    final itemCount = products.length + (footer == null ? 0 : 1);
+    return SliverPadding(
+      padding: const EdgeInsetsDirectional.all(AppSpacing.lg),
+      sliver: SliverList.builder(
+        itemCount: itemCount,
+        itemBuilder: (context, index) {
+          if (index == products.length) return footer;
+          final product = products[index];
+          return Padding(
+            padding: const EdgeInsetsDirectional.only(bottom: AppSpacing.sm),
+            child: CafeProductCard(
+              key: ValueKey('cafe-product-${product.id}'),
+              product: product,
+              heroTag: 'cafe-product-${product.id}',
+              isFavorite: favorites.contains(product.id),
+              onFavorite: () => onFavorite(product.id),
+              onQuickAdd: () => onQuickAdd(product),
+              onTap: () => onOpen(product, 'cafe-product-${product.id}'),
+            ),
+          );
+        },
+      ),
     );
   }
 }
